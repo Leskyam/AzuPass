@@ -1,0 +1,5 @@
+D:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\bin\AzuPass.dll
+D:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\obj\Release\TEICOCF.WebServices.AzuPass.resources
+D:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\obj\Release\AzuPass.Global.resources
+D:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\obj\Release\AzuPass.csproj.GenerateResource.Cache
+D:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\obj\Release\AzuPass.dll

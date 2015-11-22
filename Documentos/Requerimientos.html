@@ -1,0 +1,316 @@
+<html>
+<head>
+  <title>Requerimientos de Servicio AzuPass</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body style="font-size: 10pt; font-family: verdana">
+  <center>
+    <h3>
+      EES TEICO - Cienfuegos<br>
+      Documento de requerimientos para proyecto Web - AzuPass
+    </h3>
+  </center>
+  <b>SUSTENTO DE ESTE DOCUMENTO:</b><br>
+  <ul>
+    Este documento pertenece a la fase conceptual del proceso de diseño del proyecto
+    antes mencionado, basándose en el estilo de trabajo de Microsoft Solutions Framework
+    (MSF). Durante esta fase, el equipo de diseño identifica los conceptos y objetivos
+    principales de la aplicación desde el punto de vista del usuario y la empresa. Al
+    final del proceso, el equipo habrá desarrollado el documento de especificaciones
+    de funcionamiento de la aplicación que constituirán la base para cualquier tarea
+    de diseño posterior.
+  </ul>
+  <b>AUDIENCIA:</b><br>
+  <i>Objetivo(s): Determinar qué usuarios o clientes harán uso de la solución</i>
+  <ul>
+    La audiencia identificada para este servicio Web XML podrá estar compuesta por cualquier
+    aplicación que lo requiera y que sea capaz de consumir servicios de este tipo (XML
+    Web Services), entonces tenemos que podrá ser utilizado, al menos, por aplicaciones
+    y otros servicios desarrollados utilizando cualquier entorno de desarrollo .Net,
+    tanto aquellas que se ejecutan sobre HTTP como las de escritorio. Estas aplicaciones
+    o servicios que consumirán de éste (AzuPass) a partir de ahora serán llamados indistintamente
+    "clientes" ó "aplicaciones clientes".
+  </ul>
+  <b>DESCRIPCIÓN GENERAL DE LA FUNCIONALIDAD:</b><br>
+  <i>Objetivo(s): Exponer de manera generalizada los requisitos con los que debe cumplir
+    el producto final. </i>
+  <ul>
+    AzuPass es un servicio Web XML que manipulará registros de usuarios en una base
+    de datos personalizada con el fin de proporcionar a sus aplicaciones clientes un
+    mencanismo centralizado para la identificación de los mismos, para ello expondrá
+    los métodos que se entiendan necesarios a través de los cuales las aplicaciones
+    clientes podrán implementar funciones básicas como: identificar usuarios, recuperar
+    datos de perfiles de usuarios, recuperar lista de las aplicaciones que hacen uso
+    de este servicio y otras que se consideren propias de este tipo de servicio. Además
+    del propio servicio existirá una aplicación cliente "Administrador de perfiles AzuPass"
+    que permitirá hacer todas las funciones necesarias para el manejo de los perfiles
+    desde el punto de vista del usuario final, lo cual implica que los desarrolladores
+    de aplicaciones que empleen este servicio para identificación de usuarios no necesitan
+    implementar los mecanismos propios para la manipulación de los perfiles del usuario
+    en la aplicación que desarrollen, sino que podrán remitir a los usuarios a la URL
+    de la aplicación que lo hace (Administrador de perfiles AzuPass), implementando
+    solamente en sus aplicaciones lo necesario para la valildación de las credenciales
+    que proporciona el usuario y cualquier otro método que se considere pertinente y
+    que le esté permitido a las aplicaciones clientes.
+  </ul>
+  <b>CASOS DE USO:</b><br>
+  <i>Objetivo(s): los casos de uso son simplemente descripciones textuales de la interacción
+    que tiene lugar entre un agente externo llamado <b>Actor</b><sup>1</sup> y la solución
+    que se está diseñando. Los actores también pueden ser servicios, componentes y usuarios,
+    entre otros. La información más importante que se debe determinar para la creación
+    de los casos de uso es la acción del actor y el resultado esperado.</i>
+  <ul>
+    <b>Usuario: aplicación cliente</b> <i>(Cualquier Aplicaci&oacute;n que pueda consumir
+      este servicio Web XML)</i>
+    <ol>
+      <li><u>Valida credenciales de usuario (_LogOn)</u></li>
+      <li><u>Valida credenciales de usuario y devuelve datos de éste (_LogOnPlus)</u></li>
+      <li><u>Devuelve las aplicaciones favoritas (más utilizadas) de un usuario (_getProfileFavorites)</u></li>
+      <li><u>Devuelve las aplicaciones que hacen uso de este servicio Web XML (_getServicedApplications)</u></li>
+      <li><u>Devuelve las direcciones de correo-e de los administradores de este servicio
+        (_getServiceAdmins)</u></li>
+      <li><u>Obtener la URL de la aplicaci&oacute;n que gestiona los datos de los perfiles
+        de usuario (_getProfileManagerURL)</u></li>
+      <li><u>Obtener c&oacute;digo HTML con el mensaje "Acerca de" de este servicio (_getAbout)</u></li>
+      <li><u>Obtener la URL de la imagen de logo de este servicio (_getLogoImageSrc)</u></li>
+      <li><u>Obtener el nombre corto de este servicio (_getServiceShortName)</u></li>
+      <li><u>Obtener el nombre largo de este servicio (_getServiceFullName)</u></li>
+      <li><u>Obtener lista de categorías ocupacionales (_getListCatOcupacionales)</u></li>
+    </ol>
+  </ul>
+  <b>ESCENARIOS DE USO:</b><br>
+  <i>Objetivo(s): Los escenarios de uso se crean a partir de los casos de uso. Aquí
+    se muestran <b>los diagramas de los casos de uso</b><sup>2</sup> de la acción o
+    acciones que cada escenario representa junto con una explicación textual detallada
+    del comportamiento de la aplicación frente a la situación dada.</i><br>
+  <ul>
+    <b>Notas.</b>
+    <ul>
+      <li>Para ver los esquemas gráficos de los casos de uso localice el fichero <a href="ftp://ftp.cf.minaz.cu/Programadores/Proyectos/AzuPass/ws/Documentos/ms_visio/ws_AzuPass_Casos_De_Uso.htm">
+        ws_AzuPass_Casos_De_Uso.htm</a>, que forma parte de la documentación generada con
+        Microsoft Visio para este proyecto.<br>
+        <li>Todos los escenarios que aquí se describen tienen en cuenta que se está argumentando
+          la funcionalidad de un componente o servicio, omitiendo las especificaciones de
+          la implementación que se haga por parte del desarrollador de la aplicación cliente,
+          las descripciones se hacen tomando en cuenta los valores que se necesitan para cada
+          método y los posibles valores devueltos en cada caso. En el caso de errores se devolverán
+          tales como son siempre que sea posible o una descripción correspondiente para evitar
+          proporcionar información sencible que pueda ser utilizada para comprometer la seguridad
+          o el funcionamiento del servicio.
+          <li>Cada método que se exponga para ser utilizado por la aplicación cliente mostrará
+            una descripción detallada del mismo y de cada uno de sus parámetros tanto de entrada
+            como de salida, siempre y cuando se emplee un entorno integrado de desarrollo que
+            cuente con esta capacidad. </li>
+    </ul>
+    <br>
+    <b>Usuario: aplicación cliente</b> <i>(Aplicaciones que pueden consumir este servicios)</i>
+    <ol>
+      <li><u>Crear nuevo registro del usuario (addUserProfile)</u>
+        <br>
+        Para crear un nuevo registro de usuario se requiere que la aplicación cliente proporcione
+        los siguientes datos: Nombre, apellidos, dirección de correo electrónico, año de
+        nacimiento, mes de nacimiento, día de nacimiento, sexo, categoría ocupacional&nbsp;y
+        nombre de la aplicación a través de la que se registra. El servicio tendrá en cuenta
+        y registrará los siguientes datos: fecha y hora del registro. Se validará la siguiente
+        información: el dominio de correo debe estar dentro de "*.minaz.cu", la fecha que
+        se forma producto de la unión del año, mes y día de nacimiento debe ser válida.
+        En caso de ser efectivo el registro del usuario el servicio enviará la contraseña
+        (un valor encriptado autogenerado) a la dirección de correo proporcinada por el
+        usuario final a través de la aplicación cliente. En caso de no proceder se devolverá
+        un objeto del tipo error "exception" que contendrá la causa que lo ha impedido.<br>
+        <br>
+        <li><u>Validar credenciales del usuario (valUserPass)</u>
+          <br>
+          Para validar las credenciales del usuario se requiere que la aplicación cliente
+          proporcione los siguientes datos: nombre de la aplicación cliente que hace uso del
+          servicio, dirección de correo electrónico del usuario y su contraseña. El servicio
+          tendrá en cuenta y registrará los siguientes datos: fecha y hora de esta validación
+          de las credenciales y el nombre de la aplicación que se proporciona. En caso de
+          ser efectiva la verificación de las credenciales proporcionadas por el usuario final
+          el servicio devolverá un valor del tipo verdadero "true", de lo contrario devolverá
+          falso "false". En caso de error "exception" se devolverá la descripción del error.<br>
+          <br>
+          <li><u>Cambiar contraseña del usuario (chgUserPassword)</u>
+            <br>
+            Para cambiar la contraseña del usuario se requiere que la aplicación cliente proporcione
+            los siguientes datos: dirección de correo electrónico del usuario, contraseña en
+            uso actualmente y la nueva contraseña. El servicio validará que la contraseña cumpla
+            con los requerimientos que se exponen a través de la cadena devuelta por el método
+            "passwordRequeriments", el cual se podrá utilizar para mostrar al usuario esta información.
+            En caso de ser efectiva la verificación de las credenciales en uso proporcionadas
+            por el usuario final se hará el cambio de la contraseña y se devolverá un valor
+            del tipo verdadero "true", de lo contrario devolverá falso "false". En caso error
+            "exception" se devolverá la descripción del error.<br>
+            <br>
+            <li><u>Cambiar datos del perfil del usuario (chgUserProfile)</u>
+              <br>
+              Para cambiar los datos del perfil del usuario se requiere que la aplicación cliente
+              proporcione las credenciales del mismo. El servicio validará las credenciales y
+              en caso de ser efectiva la verificación de las credenciales se aplicarán los cambios
+              solicitados, si el procedimiento es efectivo se devolverá un valor del tipo verdadero
+              "true", de lo contrario devolverá falso "false". En caso error "exception" se devolverá
+              la descripción del error.<br>
+              <br>
+              <li><u>Obtener datos del perfil del usuario (getUserProfile)</u>
+                <br>
+                Para obtener los datos del perfil del usuario se requiere que la aplicación cliente
+                proporcione las credenciales del usuario en cuestión y en caso de ser efectiva la
+                verificación de las credenciales proporcionadas se devolverán los los mismos datos
+                que para el registro inicial con excepción de la contraseña, de lo contrario se
+                devolverá error "exception" con la correspondiente descripción.<br>
+                <br>
+                <li><u>Obtener URL del logo del servicio (getLogoURL)</u>
+                  <br>
+                  Para obtener el logo del servicio no es preciso proporcionar ningún parámetro. Se
+                  devolverá una cadena con la URL de la ubicación de la imagen que representa el logo
+                  de este servicio. Esta imagen se puede utilizar cerca de los controles donde el
+                  usuario proporcionará las credenciales para llamar su atención e indicarle que está
+                  haciendo uso del servicio "AzuPass" para su identificación.<br>
+                  <br>
+                  <li><u>Obtener requerimientos de la contraseña (getPasswordRequeriments)</u>
+                    <br>
+                    Para obtener los requerimientos de la contraseña no es preciso proporcionar ningún
+                    parámetro. Se devolverá una cadena con la descripción de las características de
+                    la contraseña esperada. Esta descripción podrá ser utilizada cerca del control de
+                    nueva contraseña para llamar su atención e indicarle que debe cumplir con los requerimientos
+                    de la misma.<br>
+                    <br>
+                    <li><u>Obtener URL de la aplicación "Administrador de perfiles AzuPass" (getProfileMgrURL)</u>
+                      <br>
+                      Para obtener la URL de la aplicación que manipula los perfiles del usuario no es
+                      preciso proporcionar ningún parámetro. Se devolverá una cadena con la dirección
+                      URL donde se hospeda dicha aplicación. Esta dirección podrá ser mostrada como un
+                      hypervínculo para remitir a los usuarios que requieran hacer cambios en su perfil
+                      a la misma y evitar así la implementación en su aplicación de otros métodos además
+                      del de la validación de las credenciales del usuario.<br>
+                      <br>
+                      <li><u>Obtener trazas de usuarios (getUserLog)</u>
+                        <br>
+                        Cada usuario podrá ver sus propios registros de actividad, en ellos se mostrarán
+                        las aplicaciones que ha utilizado y las fechas y horas a las que lo ha hecho. Además
+                        habrán algunos usuarios declarados como "SuperAdmins" a nivel de este servicio,
+                        estos usuarios podrán utilizar la aplicación "Administrador de perfiles AzuPass"
+                        para ver los registros de actividad de todos los usuarios. Para utilizar este método
+                        deberán proporcionarse las credenciales del usuario.<br>
+                        <br>
+                        <li><u>Eliminar registro de usuario (delUserProfile)</u>
+                          <br>
+                          Para eliminar un registro de usuario es preciso propporcionar las credenciales del
+                          usuario que se eliminará, el servicio valida las mismas y si están correctas, entonces
+                          eliminará cualquier registro del usuario. De realizarse el procedimiento de manera
+                          correcta se devolverá verdadero "true" de lo contrario se devolverá falso "false".
+                          De suceder algún error "exception" se devolverá una descripción según como corresponda.<br>
+                          <br>
+                          <li><u>Obtener lista de categorías ocupacionales (lstCatOcupacionales)</u>
+                            <br>
+                            Para obtener las direcciones de correo electrónico que se configuren para soporte
+                            técnico a este servicio no es preciso proporcionar ningún dato de entrada. Estas
+                            direcciones pueden utilizarse para enviar correo con dudas o problemas que se presenten
+                            con la funcionalidad del servicio.
+                            <br>
+                            <br>
+                            <li><u>Obtener lista de aplicaciones más utilizadas (lstMostUsedApps)</u>
+                              <br>
+                              Se podrá obtener una lista de las aplicaciones cliente más utilizadas por el usuario
+                              luego de estar éste identificado, para ello será necesario proporcionar los siguientes
+                              datos: dirección de correo del usuario, su contraseña y la cantidad de aplicaciones
+                              que se devolverá en la lista. Esta lista podrá ser utilizada para hacer vínculos
+                              a las direcciones URL de las aplicaciones más utilizadas por el usuario en cuestión
+                              y enriquecer la navegabilidad de su aplicación, esto es muy conveniente para aquellos
+                              que implementan Inicio de Sesión Unico (Single Sign On) en sus sitios Web o conjunto
+                              de aplicaciones.
+                              <br>
+                              <br>
+                              <li><u>Agregar elementos a la lista de categorías ocupacionales (addCatOcupacional)</u>
+                                <br>
+                                Para agregar elementos a la lista de categorías ocupacionales es preciso que el
+                                usuario que está haciendo uso de la aplicación cliente del servicio se identifique
+                                como Administrador de este, enotonces la aplicación deberá proporcionar el nombre
+                                de la nueva categoría ocupacional que se necesita agregar. De ser efectiva la operación
+                                se envierá de retorno un valor verdadero "true", de lo contrario y en caso de suceder
+                                un error se devolverá el mismo o la descripción correspondiente.
+                                <br>
+                                <br>
+                                <li><u>Eliminar elementos de la lista de categorías ocupacionales (delCatOcupacional)</u>
+                                  <br>
+                                  Para eliminar un elemento de la lista de categorías ocupacionales es preciso que
+                                  el usuario que está haciendo uso de la aplicación cliente del servicio se identifique
+                                  como Administrador de este, enotonces la aplicación deberá proporcionar el ID de
+                                  la categoría ocupacional que se necesita eliminar y la operación se llevará a cabo
+                                  si este no está en uso por alguno de los perfiles de usuario activo. De ser efectiva
+                                  la operación se envierá de retorno un valor verdadero "true", de lo contrario y
+                                  en caso de suceder un error se devolverá el mismo o la descripción correspondiente.
+                                  <br>
+                                  <br>
+                                  <li><u>Modificar elemenetos de la lista de categorías ocupacionales (chgCatOcupacional)</u>
+                                    <br>
+                                    Para modificar un elemento de la lista de categorías ocupacionales es preciso que
+                                    el usuario que está haciendo uso de la aplicación cliente del servicio se identifique
+                                    como Administrador de este, enotonces la aplicación deberá proporcionar el nuevo
+                                    nombre de la categoría ocupacional que se necesita modificar. De ser efectiva la
+                                    operación se envierá de retorno un valor verdadero "true", de lo contrario y en
+                                    caso de suceder un error se devolverá el mismo o la descripción correspondiente.
+                                    <br>
+                                    <br>
+                                  </li>
+    </ol>
+  </ul>
+  <ul>
+    <b>Nota.</b><br>
+    Los escenarios de uso y los casos de uso obtenidos a partir de éstos deben describir
+    el comportamiento esperado de la aplicación en varios procesos empresariales. Asimismo,
+    <b>los escenarios de uso deben proporcionar una descripción conceptual de las funciones
+      de la aplicación y la base para el diseño lógico de los componentes de la misma.</b>
+    Además, debido a que el proceso de diseño es iterativo, se pueden incorporar nuevos
+    casos de uso en el diseño si durante el proceso de desarrollo se identifica un nuevo
+    tipo de interacción.
+  </ul>
+  <b>ENTIDADES IDENTIFICADAS:</b><br>
+  <i>Objetivo(s): Exponer todas las entidades identificadas en el proceso, se incluirán
+    el tipo de la misma, podrá ser clase y/o tabla de datos. En el esquema de estructura
+    estática se exponen los detalles de las clases y en el diagrama de modelo de base
+    de datos la estructura de las tablas.</i>
+  <ol>
+    <li><b>Perfil</b><br>
+      <ul>
+        <b>Tipos:</b> Tabla (tbl_Perfil) y clase (Perfil)<br>
+        <br>
+      </ul>
+    </li>
+    <li><b>Categoría ocupacional</b><br>
+      <ul>
+        <b>Tipos:</b> Tabla (tbl_CatOcupacional) y clase (CatOcupacional)<br>
+        <br>
+      </ul>
+    </li>
+    <li><b>Registro de uso</b><br>
+      <ul>
+        <b>Tipos:</b> Tabla (tbl_RegistroUso) y clase (RegistroUso)<br>
+        <br>
+      </ul>
+    </li>
+    <li><b>Configuraciones</b><br>
+      <ul>
+        <b>Tipos:</b> clase (clsSettings)
+      </ul>
+    </li>
+  </ol>
+  <b>OBSERVACIONES:</b><br>
+  <i>Objetivo(s): Notas adicionales. </i>
+  <ul>
+  </ul>
+  <b>Aclaraciones:</b><br>
+  <b><sup>1</sup></b> Actor se les llama a aquellos usuarios o partes lógicas (programa)
+  que interactúan con la solución.<br>
+  <b><sup>2</sup></b> Los diagramas de los casos de uso son representaciones gráficas
+  de la interacción actor-aplicación.<br>
+  <br>
+  <b>Recursos de interés:</b>
+  <ul>
+    <li><a href="ftp://ftp.cf.minaz.cu/programadores/Documentacion/dotnetframework/XML-Web-Services/"
+      target="_blank">Documentación sobre Servicios Web XML</a> </li>
+  </ul>
+  <center>
+    <b>Autor:</b> Lesky Alfonso M. TEICO - Cienfuegos.</center>
+</body>
+</html>
