@@ -32,3 +32,12 @@ E:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPa
 E:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\obj\Debug\AzuPass.pdb
 E:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\bin\AzuPass.dll
 E:\Proyectos\Web\Sistema corporativo de autenticación (AzuPass)\ws\source\AzuPass\bin\AzuPass.pdb
+C:\Users\lesky\Source\Repos\AzuPass\source\bin\AzuPass.dll.config
+C:\Users\lesky\Source\Repos\AzuPass\source\bin\AzuPass.dll
+C:\Users\lesky\Source\Repos\AzuPass\source\bin\AzuPass.pdb
+C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.csprojResolveAssemblyReference.cache
+C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\TEICOCF.WebServices.AzuPass.resources
+C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.Global.resources
+C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.csproj.GenerateResource.Cache
+C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.dll
+C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.pdb
