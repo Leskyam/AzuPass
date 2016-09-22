@@ -1,0 +1,1068 @@
+﻿<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservices.cf.minaz.cu/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://webservices.cf.minaz.cu/">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Este es un servicio Web XML que utiliza registros de usuarios en una base de datos personalizada con el fin de proporcionar a sus "aplicaciones clientes" un mecanismo centralizado para la identificación de los mismos, para ello expondrá los métodos necesarios a través de los cuales estos clientes podrán implementar funciones básicas como: identificar usuarios, obtener una lista de sitios o aplicaciones con sus correspondientes Nombre y URL que utilicen este servicio, obtener una lista de los sitios y/o aplicaciones más utilizadas por el usuario que se identifica, etc. Los clientes especializados de este servicio, como la aplicación "Administrador de perfiles AzuPass" (AzuPassProfileMgr) tendrán acceso a todos los miembros que las aplicaciones clientes, pero además podrán utilizar otros miembros también públicos, pero protegidos, que permiten realizar entre otras las siguientes operaciones: agregar nuevo perfil de usuario ó modificar datos de éste, cambiar la contraseña ó la dirección electrónica del perfil, etc. Gracias al desarrollo de la aplicación especializada (AzuPassProfileMgr) los desarrolladores de aplicaciones que empleen este servicio para identificación de usuarios no tendrán que preocuparse por las implementaciones, en la aplicación que desarrollen, de todos los mecanismos propios para la manipulación de los datos de los perfiles de los usuario, sino que podrán remitir a los usuarios a la URL de la aplicación que lo hace (AzuPassProfileMgr), implementando solamente alguno de los métodos existentes ("_LogOn" y "_LogOnPlus") para la validación de las credenciales que proporciona el usuario.
+</wsdl:documentation>
+<wsdl:types>
+<s:schema elementFormDefault="qualified" targetNamespace="http://webservices.cf.minaz.cu/">
+<s:element name="_LogOn">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="clientAppName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="clientAppURL" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="appState" type="tns:enuApplicationState"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:simpleType name="enuApplicationState">
+<s:restriction base="s:string">
+<s:enumeration value="Debug"/>
+<s:enumeration value="Release"/>
+</s:restriction>
+</s:simpleType>
+<s:element name="_LogOnResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="_LogOnResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_LogOnPlus">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="clientAppName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="clientAppURL" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="appState" type="tns:enuApplicationState"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_LogOnPlusResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_LogOnPlusResult">
+<s:complexType>
+<s:sequence>
+<s:element ref="s:schema"/>
+<s:any/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getProfileFavorites">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="cantEnLista" type="s:int"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getProfileFavoritesResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getProfileFavoritesResult">
+<s:complexType>
+<s:sequence>
+<s:element ref="s:schema"/>
+<s:any/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getServicedApplications">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="listTop" type="s:int"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getServicedApplicationsResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getServicedApplicationsResult">
+<s:complexType>
+<s:sequence>
+<s:element ref="s:schema"/>
+<s:any/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getProfileManagerURL">
+<s:complexType/>
+</s:element>
+<s:element name="_getProfileManagerURLResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getProfileManagerURLResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getAbout">
+<s:complexType/>
+</s:element>
+<s:element name="_getAboutResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getAboutResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getLogoImageSrc">
+<s:complexType/>
+</s:element>
+<s:element name="_getLogoImageSrcResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getLogoImageSrcResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getServiceShortName">
+<s:complexType/>
+</s:element>
+<s:element name="_getServiceShortNameResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getServiceShortNameResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getServiceFullName">
+<s:complexType/>
+</s:element>
+<s:element name="_getServiceFullNameResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getServiceFullNameResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="_getListCatOcupacionales">
+<s:complexType/>
+</s:element>
+<s:element name="_getListCatOcupacionalesResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="_getListCatOcupacionalesResult">
+<s:complexType>
+<s:sequence>
+<s:element ref="s:schema"/>
+<s:any/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="Register">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Apellidos" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="FechaNac" type="s:dateTime"/>
+<s:element minOccurs="1" maxOccurs="1" name="Sexo" type="tns:enuSexo"/>
+<s:element minOccurs="1" maxOccurs="1" name="IdCatOcupacional" type="s:int"/>
+<s:element minOccurs="0" maxOccurs="1" name="DescripcionIntereses" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:simpleType name="enuSexo">
+<s:restriction base="s:string">
+<s:enumeration value="F"/>
+<s:enumeration value="M"/>
+</s:restriction>
+</s:simpleType>
+<s:element name="RegisterResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="RegisterResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="AuthHeader" type="tns:AuthHeader"/>
+<s:complexType name="AuthHeader">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="AppCliente" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+</s:sequence>
+<s:anyAttribute/>
+</s:complexType>
+<s:element name="EditProfile">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="EditProfileResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="EditProfileResult">
+<s:complexType>
+<s:sequence>
+<s:element ref="s:schema"/>
+<s:any/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="PrepareNewProfile">
+<s:complexType/>
+</s:element>
+<s:element name="PrepareNewProfileResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="PrepareNewProfileResult">
+<s:complexType>
+<s:sequence>
+<s:element ref="s:schema"/>
+<s:any/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="UpdateProfile">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Apellidos" type="s:string"/>
+<s:element minOccurs="1" maxOccurs="1" name="FechaNac" type="s:dateTime"/>
+<s:element minOccurs="1" maxOccurs="1" name="Sexo" type="tns:enuSexo"/>
+<s:element minOccurs="1" maxOccurs="1" name="IdCatOcupacional" type="s:int"/>
+<s:element minOccurs="0" maxOccurs="1" name="DescripcionIntereses" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="UpdateProfileResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="UpdateProfileResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="getPasswdRequeriments">
+<s:complexType/>
+</s:element>
+<s:element name="getPasswdRequerimentsResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="getPasswdRequerimentsResult" type="tns:passwordRequeriments"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:complexType name="passwordRequeriments">
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="pwdMinChars" type="s:unsignedByte"/>
+<s:element minOccurs="1" maxOccurs="1" name="pwdMaxChars" type="s:unsignedByte"/>
+<s:element minOccurs="1" maxOccurs="1" name="pwdMustDiferUserName" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+<s:element name="getChangeProfilePasswdWarning">
+<s:complexType/>
+</s:element>
+<s:element name="getChangeProfilePasswdWarningResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="getChangeProfilePasswdWarningResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="changeProfilePasswd">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="current_Passwd" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="new_Passwd" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="changeProfilePasswdResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="changeProfilePasswdResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="getChangeProfileEmailWarning">
+<s:complexType/>
+</s:element>
+<s:element name="getChangeProfileEmailWarningResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="getChangeProfileEmailWarningResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="changeProfileEmail">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="current_e_mail" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Passwd" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="new_e_mail" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="changeProfileEmailResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="changeProfileEmailResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="resendWelcomeEmail">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="resendWelcomeEmailResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="resendWelcomeEmailResult" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="Test">
+<s:complexType/>
+</s:element>
+<s:element name="TestResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="TestResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:schema>
+</wsdl:types>
+<wsdl:message name="_LogOnSoapIn">
+<wsdl:part name="parameters" element="tns:_LogOn"/>
+</wsdl:message>
+<wsdl:message name="_LogOnSoapOut">
+<wsdl:part name="parameters" element="tns:_LogOnResponse"/>
+</wsdl:message>
+<wsdl:message name="_LogOnPlusSoapIn">
+<wsdl:part name="parameters" element="tns:_LogOnPlus"/>
+</wsdl:message>
+<wsdl:message name="_LogOnPlusSoapOut">
+<wsdl:part name="parameters" element="tns:_LogOnPlusResponse"/>
+</wsdl:message>
+<wsdl:message name="_getProfileFavoritesSoapIn">
+<wsdl:part name="parameters" element="tns:_getProfileFavorites"/>
+</wsdl:message>
+<wsdl:message name="_getProfileFavoritesSoapOut">
+<wsdl:part name="parameters" element="tns:_getProfileFavoritesResponse"/>
+</wsdl:message>
+<wsdl:message name="_getServicedApplicationsSoapIn">
+<wsdl:part name="parameters" element="tns:_getServicedApplications"/>
+</wsdl:message>
+<wsdl:message name="_getServicedApplicationsSoapOut">
+<wsdl:part name="parameters" element="tns:_getServicedApplicationsResponse"/>
+</wsdl:message>
+<wsdl:message name="_getProfileManagerURLSoapIn">
+<wsdl:part name="parameters" element="tns:_getProfileManagerURL"/>
+</wsdl:message>
+<wsdl:message name="_getProfileManagerURLSoapOut">
+<wsdl:part name="parameters" element="tns:_getProfileManagerURLResponse"/>
+</wsdl:message>
+<wsdl:message name="_getAboutSoapIn">
+<wsdl:part name="parameters" element="tns:_getAbout"/>
+</wsdl:message>
+<wsdl:message name="_getAboutSoapOut">
+<wsdl:part name="parameters" element="tns:_getAboutResponse"/>
+</wsdl:message>
+<wsdl:message name="_getLogoImageSrcSoapIn">
+<wsdl:part name="parameters" element="tns:_getLogoImageSrc"/>
+</wsdl:message>
+<wsdl:message name="_getLogoImageSrcSoapOut">
+<wsdl:part name="parameters" element="tns:_getLogoImageSrcResponse"/>
+</wsdl:message>
+<wsdl:message name="_getServiceShortNameSoapIn">
+<wsdl:part name="parameters" element="tns:_getServiceShortName"/>
+</wsdl:message>
+<wsdl:message name="_getServiceShortNameSoapOut">
+<wsdl:part name="parameters" element="tns:_getServiceShortNameResponse"/>
+</wsdl:message>
+<wsdl:message name="_getServiceFullNameSoapIn">
+<wsdl:part name="parameters" element="tns:_getServiceFullName"/>
+</wsdl:message>
+<wsdl:message name="_getServiceFullNameSoapOut">
+<wsdl:part name="parameters" element="tns:_getServiceFullNameResponse"/>
+</wsdl:message>
+<wsdl:message name="_getListCatOcupacionalesSoapIn">
+<wsdl:part name="parameters" element="tns:_getListCatOcupacionales"/>
+</wsdl:message>
+<wsdl:message name="_getListCatOcupacionalesSoapOut">
+<wsdl:part name="parameters" element="tns:_getListCatOcupacionalesResponse"/>
+</wsdl:message>
+<wsdl:message name="RegisterSoapIn">
+<wsdl:part name="parameters" element="tns:Register"/>
+</wsdl:message>
+<wsdl:message name="RegisterSoapOut">
+<wsdl:part name="parameters" element="tns:RegisterResponse"/>
+</wsdl:message>
+<wsdl:message name="RegisterAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="EditProfileSoapIn">
+<wsdl:part name="parameters" element="tns:EditProfile"/>
+</wsdl:message>
+<wsdl:message name="EditProfileSoapOut">
+<wsdl:part name="parameters" element="tns:EditProfileResponse"/>
+</wsdl:message>
+<wsdl:message name="EditProfileAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="PrepareNewProfileSoapIn">
+<wsdl:part name="parameters" element="tns:PrepareNewProfile"/>
+</wsdl:message>
+<wsdl:message name="PrepareNewProfileSoapOut">
+<wsdl:part name="parameters" element="tns:PrepareNewProfileResponse"/>
+</wsdl:message>
+<wsdl:message name="PrepareNewProfileAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="UpdateProfileSoapIn">
+<wsdl:part name="parameters" element="tns:UpdateProfile"/>
+</wsdl:message>
+<wsdl:message name="UpdateProfileSoapOut">
+<wsdl:part name="parameters" element="tns:UpdateProfileResponse"/>
+</wsdl:message>
+<wsdl:message name="UpdateProfileAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="getPasswdRequerimentsSoapIn">
+<wsdl:part name="parameters" element="tns:getPasswdRequeriments"/>
+</wsdl:message>
+<wsdl:message name="getPasswdRequerimentsSoapOut">
+<wsdl:part name="parameters" element="tns:getPasswdRequerimentsResponse"/>
+</wsdl:message>
+<wsdl:message name="getPasswdRequerimentsAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="getChangeProfilePasswdWarningSoapIn">
+<wsdl:part name="parameters" element="tns:getChangeProfilePasswdWarning"/>
+</wsdl:message>
+<wsdl:message name="getChangeProfilePasswdWarningSoapOut">
+<wsdl:part name="parameters" element="tns:getChangeProfilePasswdWarningResponse"/>
+</wsdl:message>
+<wsdl:message name="getChangeProfilePasswdWarningAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="changeProfilePasswdSoapIn">
+<wsdl:part name="parameters" element="tns:changeProfilePasswd"/>
+</wsdl:message>
+<wsdl:message name="changeProfilePasswdSoapOut">
+<wsdl:part name="parameters" element="tns:changeProfilePasswdResponse"/>
+</wsdl:message>
+<wsdl:message name="changeProfilePasswdAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="getChangeProfileEmailWarningSoapIn">
+<wsdl:part name="parameters" element="tns:getChangeProfileEmailWarning"/>
+</wsdl:message>
+<wsdl:message name="getChangeProfileEmailWarningSoapOut">
+<wsdl:part name="parameters" element="tns:getChangeProfileEmailWarningResponse"/>
+</wsdl:message>
+<wsdl:message name="getChangeProfileEmailWarningAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="changeProfileEmailSoapIn">
+<wsdl:part name="parameters" element="tns:changeProfileEmail"/>
+</wsdl:message>
+<wsdl:message name="changeProfileEmailSoapOut">
+<wsdl:part name="parameters" element="tns:changeProfileEmailResponse"/>
+</wsdl:message>
+<wsdl:message name="changeProfileEmailAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="resendWelcomeEmailSoapIn">
+<wsdl:part name="parameters" element="tns:resendWelcomeEmail"/>
+</wsdl:message>
+<wsdl:message name="resendWelcomeEmailSoapOut">
+<wsdl:part name="parameters" element="tns:resendWelcomeEmailResponse"/>
+</wsdl:message>
+<wsdl:message name="resendWelcomeEmailAuthHeader">
+<wsdl:part name="AuthHeader" element="tns:AuthHeader"/>
+</wsdl:message>
+<wsdl:message name="TestSoapIn">
+<wsdl:part name="parameters" element="tns:Test"/>
+</wsdl:message>
+<wsdl:message name="TestSoapOut">
+<wsdl:part name="parameters" element="tns:TestResponse"/>
+</wsdl:message>
+<wsdl:portType name="AzuPassSoap">
+<wsdl:operation name="_LogOn">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_LogOn: comprueba las credenciales del usuario que se pasan como valor de los parámetros "e_mail" y "passwd" para devolver un valor "true" si existe alguna coincidencia y "false" para cuando no la hay. También registra el nombre de la aplicación y la URL que se pasan como valor de los parámetros "clientAppName" y "clientAppURL" a nombre del usuario identificado para formarle una lista de sitios favoritos.
+</wsdl:documentation>
+<wsdl:input message="tns:_LogOnSoapIn"/>
+<wsdl:output message="tns:_LogOnSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_LogOnPlus">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_LogOnPlus: comprueba las credenciales del usuario que se pasan como valor de los parámetros "e_mail" y "passwd". Si el usuario es identificado de manera correcta devuelve un DataSet con dos tablas la primera, llamada "Perfil" contiene los siguientes campos: "ID", "Nombre", "Apellidos", "e_mail", "FechaNac", "Sexo" y "FechaRegistro". La segunda tabla llamada "Favoritos" contiene los siguientes campos: "Visitas", "Desde", "Hasta", "appName" y "appURL" y representan las cinco (5) aplicaciones más utilizadas por el usuario. Si las credenciales del usuario no son válidas ó si sucediera algún error en el proceso de identificación que impidiera el buen funcionamiento del sistema, entonces se devolverá un error que podrá ser mostrado al usuario para información.
+</wsdl:documentation>
+<wsdl:input message="tns:_LogOnPlusSoapIn"/>
+<wsdl:output message="tns:_LogOnPlusSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getProfileFavorites">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_getProfileFavorites: valida las credenciales que se pasan como valor de los parámetros "e_mail" y "Passwd", de ser correctas devuelve un DataSet con una tabla llamada "Favoritos" que contiene los siguientes campos: "Visitas", "Desde", "Hasta", "appName" y "appURL" y representan las aplicaciones más utilizadas por el usuario identificado. La lista de las aplicaciones estará limitada en cantidad por el valor del parámetro "cantEnLista".
+</wsdl:documentation>
+<wsdl:input message="tns:_getProfileFavoritesSoapIn"/>
+<wsdl:output message="tns:_getProfileFavoritesSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getServicedApplications">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_getServicedApplications: devuelve un DataSet con una tabla llamada "ServicedApplications" que contiene los siguientes campos: "Visitas", "Desde", "Hasta", "appName" y "appURL" y representan todas las aplicaciones que hacen uso de este servicio para identificación de usuario cuya URL ha sido verificada como existente. La lista de las aplicaciones estará limitada en cantidad por el valor del parámetro "cantEnLista".
+</wsdl:documentation>
+<wsdl:input message="tns:_getServicedApplicationsSoapIn"/>
+<wsdl:output message="tns:_getServicedApplicationsSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getProfileManagerURL">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_getProfileManagerURL: devuelve una cadena con la URL de donde se hospeda la aplicación "Administrador de perfiles AzuPass", también llamada: AzuPassProfileMgr.
+</wsdl:documentation>
+<wsdl:input message="tns:_getProfileManagerURLSoapIn"/>
+<wsdl:output message="tns:_getProfileManagerURLSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getAbout">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_getAbout: devuelve una cadena en formato HTML codificado con el contenido del "Acerca de" de este servicio.
+</wsdl:documentation>
+<wsdl:input message="tns:_getAboutSoapIn"/>
+<wsdl:output message="tns:_getAboutSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getLogoImageSrc">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_getLogoImageSrc: devuelve una cadena con la dirección http donde se encuentra la imagen que representa el logo de este servicio.
+</wsdl:documentation>
+<wsdl:input message="tns:_getLogoImageSrcSoapIn"/>
+<wsdl:output message="tns:_getLogoImageSrcSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getServiceShortName">
+<wsdl:input message="tns:_getServiceShortNameSoapIn"/>
+<wsdl:output message="tns:_getServiceShortNameSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getServiceFullName">
+<wsdl:input message="tns:_getServiceFullNameSoapIn"/>
+<wsdl:output message="tns:_getServiceFullNameSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="_getListCatOcupacionales">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+_getListCatOcupacionales: devuelve un DataSet con una única tabla con la lista de las categorías ocupacionales registradas para los perfiles de este servicio. La tabla devuelta tiene los siguienjtes campos "Id" y "Descripcion".
+</wsdl:documentation>
+<wsdl:input message="tns:_getListCatOcupacionalesSoapIn"/>
+<wsdl:output message="tns:_getListCatOcupacionalesSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="Register">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Agrega un nuevo perfil con los valores de los parámetros que se pasan.
+</wsdl:documentation>
+<wsdl:input message="tns:RegisterSoapIn"/>
+<wsdl:output message="tns:RegisterSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="EditProfile">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Devuelve un DataSet con los datos que corresponden al usuario cuyos email y passwd se pasan como valor de los respectivos parámetros, el DataSet contiene dos tablas con los siguientes nombres "tbl_Perfil" y "lst_CatOcupacional" con los datos del perfil que se solicita editar y con la lista de categorías ocupacionales disponibles, respectivamente.
+</wsdl:documentation>
+<wsdl:input message="tns:EditProfileSoapIn"/>
+<wsdl:output message="tns:EditProfileSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="PrepareNewProfile">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Obtener un DataSet con los espacios que corresponden a un nuevo Perfil, el DataSet contiene dos tablas con los siguientes nombres "Perfil" y "lstCatOcupacionales". Las tablas contienen los siguientes campos: "Nombre", "Apellidos", "e_mail", "FechaNac", "Sexo", "IdCatOcupacional" para la tabla "Perfil" y los campos: "Id" y "Descripcion" para la tabla "lstCatOcupacionales".
+</wsdl:documentation>
+<wsdl:input message="tns:PrepareNewProfileSoapIn"/>
+<wsdl:output message="tns:PrepareNewProfileSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="UpdateProfile">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Actualizar los datos del perfil que concuerde con las credenciales que se pasan (e_mail y Passwd) con los datos que contienen los demás parámetros.
+</wsdl:documentation>
+<wsdl:input message="tns:UpdateProfileSoapIn"/>
+<wsdl:output message="tns:UpdateProfileSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="getPasswdRequeriments">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Obtener la estructura que almacena los valores que representan los requerimientos de la contraseña.
+</wsdl:documentation>
+<wsdl:input message="tns:getPasswdRequerimentsSoapIn"/>
+<wsdl:output message="tns:getPasswdRequerimentsSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="getChangeProfilePasswdWarning">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+getChangeProfilePasswdWarning: emite un mensaje para que sirva de advertencia al usuario sobre las características que se espera tenga la nueva contraseña, sobre cantidad de caracteres mínimos y máximos admitidos, y si se exige que la nueva contraseña difiera del nombre, los apellidos, el email o alguna parte de ellos o la unión de los mismos.
+</wsdl:documentation>
+<wsdl:input message="tns:getChangeProfilePasswdWarningSoapIn"/>
+<wsdl:output message="tns:getChangeProfilePasswdWarningSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="changeProfilePasswd">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+changeProfilePasswd: cambiar la contraseña del perfil que corresponda con las credenciales que se pasan como valor de los parámetros "e_mail" y "current_Passwd".
+</wsdl:documentation>
+<wsdl:input message="tns:changeProfilePasswdSoapIn"/>
+<wsdl:output message="tns:changeProfilePasswdSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="getChangeProfileEmailWarning">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+getChangeProfileEmailWarning: emite un mensaje para que sirva de advertencia al usuario sobre el proceso de cambio de su dirección de correo, anunciándole que si el cambio es efectivo también se cambiará la contraseña a un valor autogenerado por cuestiones de seguridad y entonces recibirá un correo con la nueva contraseña como la primera vez que se registró.
+</wsdl:documentation>
+<wsdl:input message="tns:getChangeProfileEmailWarningSoapIn"/>
+<wsdl:output message="tns:getChangeProfileEmailWarningSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="changeProfileEmail">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+changeProfileEmail: cambia la dirección electrónica del perfil que se identifique según los valores de las credenciales que se pasan en los parámetros "currente_e_mail" y "Passwd" por la dirección que se pasa como valor de "new_e_mail". Los valores devueltos en forma de cadena son los mensajes que indican lo que ha sucedido, si fue efectivo el cambio, y si no pudo ser, entonces la causa.
+</wsdl:documentation>
+<wsdl:input message="tns:changeProfileEmailSoapIn"/>
+<wsdl:output message="tns:changeProfileEmailSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="resendWelcomeEmail">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+resendWelcomeEmail: Reenvía, a la dirección de correo especificada a través del parámetro "e_mail", el correo electrónico de bienvenida que genera este servicio para los nuevos usuarios al registrarse la primera vez, este correo incluye entre otros datos la contraseña del usuario. De no existir el perfil que coincida con la dirección de correo especificada o si sucede algún contratiempo que impida el envío, se devolverá un error.
+</wsdl:documentation>
+<wsdl:input message="tns:resendWelcomeEmailSoapIn"/>
+<wsdl:output message="tns:resendWelcomeEmailSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="Test">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Método Web de prueba.</wsdl:documentation>
+<wsdl:input message="tns:TestSoapIn"/>
+<wsdl:output message="tns:TestSoapOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="AzuPassSoap" type="tns:AzuPassSoap">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="_LogOn">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_LogOn" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_LogOnPlus">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_LogOnPlus" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getProfileFavorites">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getProfileFavorites" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getServicedApplications">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getServicedApplications" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getProfileManagerURL">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getProfileManagerURL" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getAbout">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getAbout" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getLogoImageSrc">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getLogoImageSrc" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getServiceShortName">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getServiceShortName" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getServiceFullName">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getServiceFullName" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getListCatOcupacionales">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/_getListCatOcupacionales" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Register">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/Register" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:RegisterAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="EditProfile">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/EditProfile" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:EditProfileAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PrepareNewProfile">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/PrepareNewProfile" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:PrepareNewProfileAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="UpdateProfile">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/UpdateProfile" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:UpdateProfileAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getPasswdRequeriments">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/getPasswdRequeriments" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:getPasswdRequerimentsAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getChangeProfilePasswdWarning">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/getChangeProfilePasswdWarning" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:getChangeProfilePasswdWarningAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="changeProfilePasswd">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/changeProfilePasswd" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:changeProfilePasswdAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getChangeProfileEmailWarning">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/getChangeProfileEmailWarning" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:getChangeProfileEmailWarningAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="changeProfileEmail">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/changeProfileEmail" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:changeProfileEmailAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="resendWelcomeEmail">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/resendWelcomeEmail" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+<soap:header message="tns:resendWelcomeEmailAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Test">
+<soap:operation soapAction="http://webservices.cf.minaz.cu/Test" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="AzuPassSoap12" type="tns:AzuPassSoap">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="_LogOn">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_LogOn" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_LogOnPlus">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_LogOnPlus" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getProfileFavorites">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getProfileFavorites" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getServicedApplications">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getServicedApplications" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getProfileManagerURL">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getProfileManagerURL" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getAbout">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getAbout" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getLogoImageSrc">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getLogoImageSrc" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getServiceShortName">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getServiceShortName" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getServiceFullName">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getServiceFullName" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="_getListCatOcupacionales">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/_getListCatOcupacionales" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Register">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/Register" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:RegisterAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="EditProfile">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/EditProfile" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:EditProfileAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PrepareNewProfile">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/PrepareNewProfile" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:PrepareNewProfileAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="UpdateProfile">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/UpdateProfile" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:UpdateProfileAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getPasswdRequeriments">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/getPasswdRequeriments" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:getPasswdRequerimentsAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getChangeProfilePasswdWarning">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/getChangeProfilePasswdWarning" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:getChangeProfilePasswdWarningAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="changeProfilePasswd">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/changeProfilePasswd" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:changeProfilePasswdAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getChangeProfileEmailWarning">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/getChangeProfileEmailWarning" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:getChangeProfileEmailWarningAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="changeProfileEmail">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/changeProfileEmail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:changeProfileEmailAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="resendWelcomeEmail">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/resendWelcomeEmail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+<soap12:header message="tns:resendWelcomeEmailAuthHeader" part="AuthHeader" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Test">
+<soap12:operation soapAction="http://webservices.cf.minaz.cu/Test" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="AzuPass">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+Este es un servicio Web XML que utiliza registros de usuarios en una base de datos personalizada con el fin de proporcionar a sus "aplicaciones clientes" un mecanismo centralizado para la identificación de los mismos, para ello expondrá los métodos necesarios a través de los cuales estos clientes podrán implementar funciones básicas como: identificar usuarios, obtener una lista de sitios o aplicaciones con sus correspondientes Nombre y URL que utilicen este servicio, obtener una lista de los sitios y/o aplicaciones más utilizadas por el usuario que se identifica, etc. Los clientes especializados de este servicio, como la aplicación "Administrador de perfiles AzuPass" (AzuPassProfileMgr) tendrán acceso a todos los miembros que las aplicaciones clientes, pero además podrán utilizar otros miembros también públicos, pero protegidos, que permiten realizar entre otras las siguientes operaciones: agregar nuevo perfil de usuario ó modificar datos de éste, cambiar la contraseña ó la dirección electrónica del perfil, etc. Gracias al desarrollo de la aplicación especializada (AzuPassProfileMgr) los desarrolladores de aplicaciones que empleen este servicio para identificación de usuarios no tendrán que preocuparse por las implementaciones, en la aplicación que desarrollen, de todos los mecanismos propios para la manipulación de los datos de los perfiles de los usuario, sino que podrán remitir a los usuarios a la URL de la aplicación que lo hace (AzuPassProfileMgr), implementando solamente alguno de los métodos existentes ("_LogOn" y "_LogOnPlus") para la validación de las credenciales que proporciona el usuario.
+</wsdl:documentation>
+<wsdl:port name="AzuPassSoap" binding="tns:AzuPassSoap">
+<soap:address location="http://localhost:2759/AzuPass.asmx"/>
+</wsdl:port>
+<wsdl:port name="AzuPassSoap12" binding="tns:AzuPassSoap12">
+<soap12:address location="http://localhost:2759/AzuPass.asmx"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
