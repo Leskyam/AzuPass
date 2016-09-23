@@ -4,6 +4,7 @@
 #Other system (Windows) files.
 [Tt]humbs.db
 *.lastcodeanalysissucceeded
+*.CodeAnalysisLog.xml
 
 # User-specific files
 *.suo
