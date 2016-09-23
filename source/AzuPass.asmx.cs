@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
 using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
@@ -43,51 +39,9 @@ namespace TEICOCF.WebServices
 	"existentes (\"_LogOn\" y \"_LogOnPlus\") para la validación de las credenciales que proporciona el usuario.")]
 	public class AzuPass : System.Web.Services.WebService
 	{
-
-		public AzuPass()
-		{
-			/*
-			//CODEGEN: llamada necesaria para el Diseñador de servicios Web ASP .NET
-			InitializeComponent();
-			*/
-		}
-
-
 		public AuthHeader wsAuthentication;
 
-
-		#region Código generado por el Diseñador de componentes
-		
-		/*
-		
-		//Requerido por el Diseñador de servicios Web 
-		private IContainer components = null;
-				
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
-		private void InitializeComponent()
-		{
-		}
-
-		/// <summary>
-		/// Limpiar los recursos que se estén utilizando.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if(disposing && components != null)
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);		
-		}
-		
-		*/
-
-		#endregion
-
-		#region "PROCEDIMIENTOS PRIVADOS"
+        #region "PROCEDIMIENTOS PRIVADOS"
 
 		/// <summary>
 		/// Chequear los datos que se pasan en el encabezado SOAP de algunos miembros para validación de 
@@ -326,11 +280,12 @@ namespace TEICOCF.WebServices
 		///	}
 		/// </code>
 		/// </example>
-		[WebMethod(Description = "_LogOn: comprueba las credenciales del usuario que se pasan como valor de los parámetros " +
+		[WebMethod(MessageName = "_LogOn", Description = "_LogOn: comprueba las credenciales del usuario que se pasan como valor de los parámetros " +
 			 "\"e_mail\" y \"passwd\" para devolver un valor \"true\" si existe alguna coincidencia y \"false\" para cuando " + 
 			 "no la hay. También registra el nombre de la aplicación y la URL que se pasan como valor de los parámetros " + 
 			 "\"clientAppName\" y \"clientAppURL\" a nombre del usuario identificado para formarle una lista de sitios favoritos.")]
-		public bool _LogOn(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_LogOn")]
+        public bool _LogOn(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
 		{
 			return this.LogOn(e_mail, Passwd, clientAppName, clientAppURL, appState)>0?true:false;
 
@@ -350,14 +305,15 @@ namespace TEICOCF.WebServices
 		/// ejecute con más rapidez.</param>
 		/// <returns>Devolverá un DataSet "true" en caso de ser identificado un perfil que corresponda con los parámetros 
 		/// e_mail y Passwd, en caso contrario devolverá "false".</returns>
-		[WebMethod(Description = "_LogOnPlus: comprueba las credenciales del usuario que se pasan como valor de los parámetros " +
+		[WebMethod(MessageName = "_LogOnPlus", Description = "_LogOnPlus: comprueba las credenciales del usuario que se pasan como valor de los parámetros " +
 			 "\"e_mail\" y \"passwd\". Si el usuario es identificado de manera correcta devuelve un DataSet con dos tablas la " + 
 			 "primera, llamada \"Perfil\" contiene los siguientes campos: \"ID\", \"Nombre\", \"Apellidos\", \"e_mail\", \"FechaNac\", " + 
 			 "\"Sexo\" y \"FechaRegistro\". La segunda tabla llamada \"Favoritos\" contiene los siguientes campos: \"Visitas\", \"Desde\", " + 
 			 "\"Hasta\", \"appName\" y \"appURL\" y representan las cinco (5) aplicaciones más utilizadas por el usuario. Si las " + 
-			 "credenciales del usuario no son válidas ó si sucediera algún error en el proceso de identificación que impidiera el " + 
-			 "buen funcionamiento del sistema, entonces se devolverá un error que podrá ser mostrado al usuario para información.")]
-		public System.Data.DataSet _LogOnPlus(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
+			 "credenciales del usuario no son válidas ó si sucediera algún error en el proceso de identificación que impidiera el " +
+             "buen funcionamiento del sistema, entonces se devolverá un error que podrá ser mostrado al usuario para información.")]
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_LogOnPlus")]
+        public System.Data.DataSet _LogOnPlus(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
 		{
 			int IdPerfil = 0;
 			IdPerfil = this.LogOn(e_mail, Passwd, clientAppName, clientAppURL, appState);  
@@ -426,7 +382,8 @@ namespace TEICOCF.WebServices
 			 "\"Favoritos\" que contiene los siguientes campos: \"Visitas\", \"Desde\", \"Hasta\", \"appName\" y " + 
 			 "\"appURL\" y representan las aplicaciones más utilizadas por el usuario identificado. La lista de las " + 
 			 "aplicaciones estará limitada en cantidad por el valor del parámetro \"cantEnLista\".")]
-		public System.Data.DataSet _getProfileFavorites(string e_mail, string Passwd, int cantEnLista)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getProfileFavorites")]
+        public System.Data.DataSet _getProfileFavorites(string e_mail, string Passwd, int cantEnLista)
 		{
 			try
 			{
@@ -469,7 +426,8 @@ namespace TEICOCF.WebServices
 			 "\"appURL\" y representan todas las aplicaciones que hacen uso de este servicio para identificación de usuario " + 
 			 "cuya URL ha sido verificada como existente. La lista de las aplicaciones estará limitada en cantidad por el " + 
 			 "valor del parámetro \"cantEnLista\".")]
-		public System.Data.DataSet _getServicedApplications(int listTop)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServicedApplications")]
+        public System.Data.DataSet _getServicedApplications(int listTop)
 		{
 			try
 			{
@@ -498,11 +456,11 @@ namespace TEICOCF.WebServices
 
 		} // Fin de _getServicedApplications
 
-
-		[WebMethod(MessageName = "_getServiceAdmins", Description = "_getServiceAdmins: devuelve un DataSet con una tabla llamada \"WebServiceAdmins\" " + 
+        [WebMethod(MessageName = "_getServiceAdmins", Description = "_getServiceAdmins: devuelve un DataSet con una tabla llamada \"WebServiceAdmins\" " + 
 			 "con el único campo \"e_mail\" donde aparecerá la dirección electrónica de cada uno de las personas que aparezca en la " + 
 			 "configuración de este servicio como administrador del mismo.")]
-		public System.Data.DataSet _getServiceAdmins()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServiceAdmins")]
+        public System.Data.DataSet _getServiceAdmins()
 		{
 			try
 			{
@@ -543,9 +501,10 @@ namespace TEICOCF.WebServices
 		} // Fin de _getServiceAdmins
 
 
-		[WebMethod(MessageName = "_getProfileManagerURL", Description = "_getProfileManagerURL: devuelve una cadena con la URL de donde se hospeda la aplicación " + 
+		[WebMethod(MessageName = "_getProfileManagerUrl", Description = "_getProfileManagerUrl: devuelve una cadena con la URL de donde se hospeda la aplicación " + 
 			 "\"Administrador de perfiles AzuPass\", también llamada: AzuPassProfileMgr.")]
-		public string _getProfileManagerURL()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getProfileManagerUrl")]
+        public string _getProfileManagerUrl()
 		{
 			try
 			{
@@ -571,11 +530,12 @@ namespace TEICOCF.WebServices
 				//throw new System.Exception(errorMessage);
 			}
 		
-		} // Fin de _getProfileManagerURL 
+		} // Fin de _getProfileManagerUrl 
 
 
 		[WebMethod(MessageName = "_getAbout", Description = "_getAbout: devuelve una cadena en formato HTML codificado con el contenido del \"Acerca de\" de este servicio.")]
-		public string _getAbout()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getAbout")]
+        public string _getAbout()
 		{
 			try
 			{
@@ -693,7 +653,8 @@ namespace TEICOCF.WebServices
 
 
 		[WebMethod(MessageName = "_getLogoImageSrc", Description = "_getLogoImageSrc: devuelve una cadena con la dirección http donde se encuentra la imagen que representa el logo de este servicio.")]
-		public string _getLogoImageSrc()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getLogoImageSrc")]
+        public string _getLogoImageSrc()
 		{
 			try
 			{
@@ -723,7 +684,8 @@ namespace TEICOCF.WebServices
 
 
 		[WebMethod(MessageName = "_getServiceShortName", Description = "")]
-		public string _getServiceShortName()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServiceShortName")]
+        public string _getServiceShortName()
 		{
 			try
 			{
@@ -753,7 +715,8 @@ namespace TEICOCF.WebServices
 
 
 		[WebMethod(MessageName = "_getServiceFullName", Description = "")]
-		public string _getServiceFullName()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServiceFullName")]
+        public string _getServiceFullName()
 		{
 			try
 			{
@@ -781,11 +744,11 @@ namespace TEICOCF.WebServices
 
 		} // Fin de _getServiceFullName
 
-		
 		[WebMethod(MessageName = "_getListCatOcupacionales", Description = "_getListCatOcupacionales: devuelve un DataSet con " + 
 			 "una única tabla con la lista de las categorías ocupacionales registradas para los perfiles de este servicio. La " + 
 			 "tabla devuelta tiene los siguienjtes campos \"Id\" y \"Descripcion\".")]
-		public System.Data.DataSet _getListCatOcupacionales()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getListCatOcupacionales")]
+        public System.Data.DataSet _getListCatOcupacionales()
 		{
 			try
 			{
@@ -819,9 +782,10 @@ namespace TEICOCF.WebServices
 
 		#region "MIEMBROS PROTEGIDOS POR ENCABEZADOS SOAP"
 
-		[SoapHeader("wsAuthentication")]
+        [SoapHeader("wsAuthentication", Direction = SoapHeaderDirection.In)]
 		[WebMethod(MessageName = "Register", Description = "Agrega un nuevo perfil con los valores de los parámetros que se pasan.")]
-		public bool Register(string Nombre, string Apellidos, string e_mail, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/Register")]
+        public bool Register(string Nombre, string Apellidos, string e_mail, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
 		{
 			// Chequear el encabezado SOAP.
 			this.checkSoapHeader();
@@ -901,7 +865,8 @@ namespace TEICOCF.WebServices
 			 "al usuario cuyos email y passwd se pasan como valor de los respectivos parámetros, el DataSet contiene " + 
 			 "dos tablas con los siguientes nombres \"tbl_Perfil\" y \"lst_CatOcupacional\" con los datos del perfil " + 
 			 "que se solicita editar y con la lista de categorías ocupacionales disponibles, respectivamente.")]
-		public System.Data.DataSet EditProfile(string Email, string Passwd)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/EditProfile")]
+        public System.Data.DataSet EditProfile(string Email, string Passwd)
 		{
 			// Comprobar encabezados SOAP
 			this.checkSoapHeader();
@@ -952,7 +917,8 @@ namespace TEICOCF.WebServices
 			 "a un nuevo Perfil, el DataSet contiene dos tablas con los siguientes nombres \"Perfil\" y \"lstCatOcupacionales\". " + 
 			 "Las tablas contienen los siguientes campos: \"Nombre\", \"Apellidos\", \"e_mail\", \"FechaNac\", \"Sexo\", " + 
 			 "\"IdCatOcupacional\" para la tabla \"Perfil\" y los campos: \"Id\" y \"Descripcion\" para la tabla \"lstCatOcupacionales\".")]
-		public System.Data.DataSet PrepareNewProfile()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/PrepareNewProfile")]
+        public System.Data.DataSet PrepareNewProfile()
 		{
 			// Comprobar encabezados SOAP
 			this.checkSoapHeader();
@@ -998,7 +964,8 @@ namespace TEICOCF.WebServices
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "UpdateProfile", Description = "Actualizar los datos del perfil que concuerde " + 
 			 "con las credenciales que se pasan (e_mail y Passwd) con los datos que contienen los demás parámetros.")]
-		public bool UpdateProfile(string e_mail, string Passwd, string Nombre, string Apellidos, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/UpdateProfile")]
+        public bool UpdateProfile(string e_mail, string Passwd, string Nombre, string Apellidos, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
 		{
 			// Chequear el encabezado SOAP.
 			this.checkSoapHeader();
@@ -1109,7 +1076,8 @@ namespace TEICOCF.WebServices
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "getPasswdRequeriments", Description = "Obtener la estructura que almacena los " + 
 			 "valores que representan los requerimientos de la contraseña.")]
-		public wsSettings.passwordRequeriments getPasswdRequeriments()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getPasswdRequeriments")]
+        public wsSettings.passwordRequeriments getPasswdRequeriments()
 		{
 			// Chequear los encabezados SOAP
 			//this.checkSoapHeader();
@@ -1147,7 +1115,8 @@ namespace TEICOCF.WebServices
 			 "para que sirva de advertencia al usuario sobre las características que se espera tenga la nueva contraseña, sobre " +
 			 "cantidad de caracteres mínimos y máximos admitidos, y si se exige que la nueva contraseña difiera del nombre, los " + 
 			 "apellidos, el email o alguna parte de ellos o la unión de los mismos.")]
-		public string getChangeProfilePasswdWarning()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getChangeProfilePasswdWarning")]
+        public string getChangeProfilePasswdWarning()
 		{
 
 			// Chequear los encabezados SOAP
@@ -1193,7 +1162,8 @@ namespace TEICOCF.WebServices
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "changeProfilePasswd", Description = "changeProfilePasswd: cambiar la contraseña del perfil " +
 			 "que corresponda con las credenciales que se pasan como valor de los parámetros \"e_mail\" y \"current_Passwd\".")]
-		public bool changeProfilePasswd(string e_mail, string current_Passwd, string new_Passwd)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/changeProfilePasswd")]
+        public bool changeProfilePasswd(string e_mail, string current_Passwd, string new_Passwd)
 		{
 
 			// Chequear los encabezados SOAP
@@ -1248,7 +1218,8 @@ namespace TEICOCF.WebServices
 			 "para que sirva de advertencia al usuario sobre el proceso de cambio de su dirección de correo, anunciándole que " + 
 			 "si el cambio es efectivo también se cambiará la contraseña a un valor autogenerado por cuestiones de seguridad y " +
 			 "entonces recibirá un correo con la nueva contraseña como la primera vez que se registró.")]
-		public string getChangeProfileEmailWarning()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getChangeProfileEmailWarning")]
+        public string getChangeProfileEmailWarning()
 		{
 
 			// Chequear los encabezados SOAP
@@ -1303,7 +1274,8 @@ namespace TEICOCF.WebServices
 			 "del perfil que se identifique según los valores de las credenciales que se pasan en los parámetros \"currente_e_mail\" " + 
 			 "y \"Passwd\" por la dirección que se pasa como valor de \"new_e_mail\". Los valores devueltos en forma de cadena " + 
 			 "son los mensajes que indican lo que ha sucedido, si fue efectivo el cambio, y si no pudo ser, entonces la causa.")]
-		public string changeProfileEmail(string current_e_mail, string Passwd, string new_e_mail)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/changeProfileEmail")]
+        public string changeProfileEmail(string current_e_mail, string Passwd, string new_e_mail)
 		{
 
 			// Chequear los encabezados SOAP
@@ -1407,7 +1379,8 @@ namespace TEICOCF.WebServices
 			 "para los nuevos usuarios al registrarse la primera vez, este correo incluye entre otros datos la contraseña " + 
 			 "del usuario. De no existir el perfil que coincida con la dirección de correo especificada o si sucede algún " + 
 			 "contratiempo que impida el envío, se devolverá un error.")]
-		public bool resendWelcomeEmail(string e_mail)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/resendWelcomeEmail")]
+        public bool resendWelcomeEmail(string e_mail)
 		{
 
 			// Chequear los encabezados SOAP
@@ -1441,25 +1414,20 @@ namespace TEICOCF.WebServices
 		} // Fin de resendWelcomeEmail
 
 
-
 		#endregion "FIN DE MIEMBROS PROTEGIDOS POR ENCABEZADOS SOAP"
 
 		#region "MIEMBROS EN DEPURACIÓN"
-
-
-
 		#endregion "FIN DE MIEMBROS EN DEPURACIÓN"
 
 		#region "MIEMBROS NO DEPURADOS"
-		
-		
 		#endregion "FIN DE MIEMBROS NO DEPURADOS"
 
 		#region "MIEMBROS DE PRUEBA"
 
 
 		//[SoapHeader("wsAuthentication")]
-		[WebMethod(Description = "Método Web de prueba.")]
+		[WebMethod(MessageName = "Test", Description = "Método Web de prueba.")]
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/Test")]
 		public string Test()
 		{
 			// Chequear los encabezados SOAP
