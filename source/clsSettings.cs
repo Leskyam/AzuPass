@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 
 namespace TEICOCF.WebServices
 {
@@ -9,14 +9,14 @@ namespace TEICOCF.WebServices
   {
     #region "VARIABLES PRIVADAS"
 
-    // NOMBRES, VERSION Y UBICACI”N DE ESTE SERVICIO WEB XML
+    // NOMBRES, VERSION Y UBICACI√ìN DE ESTE SERVICIO WEB XML
     private static string m_ServiceShortName = string.Empty;
     private static string m_ServiceFullName = string.Empty;
     private static string m_ServiceVersion = string.Empty;
     private static string m_ServiceAssemblyName = string.Empty;
     private static string m_ApplicationBaseURL = string.Empty;
 
-    // DATOS PARA ACCESO A LA RED FUERA DEL DOMINIIO ACTUAL, A TRAV…S DE UN PROXY
+    // DATOS PARA ACCESO A LA RED FUERA DEL DOMINIIO ACTUAL, A TRAV√âS DE UN PROXY
     private static bool m_CheckClientAppsURL;
     private static int m_MonthBeforeReCheck;
     private static System.Uri m_proxyAddress = null;
@@ -25,7 +25,7 @@ namespace TEICOCF.WebServices
     private static string m_proxyPasswd = string.Empty;
     private static internetAccess m_InternetAccess;
 
-    // URL DE LA APLICACI”N QUE ADMINISTRA LOS PERFILES AzuPass
+    // URL DE LA APLICACI√ìN QUE ADMINISTRA LOS PERFILES AzuPass
     private static string m_AzuPassProfileMgrURL = string.Empty;
 
     // ELEMENTOS PARA ACCESO A LA BASE DE DATOS DEL SERVICIO.
@@ -43,7 +43,7 @@ namespace TEICOCF.WebServices
     // ADMINISTRADORES DEL SERVICIO
     private static string[] m_wsAdmins = new string[0];
 
-    // CONFIGURACIONES PARA LAS CONTRASE—AS DE LOS PERFILES.
+    // CONFIGURACIONES PARA LAS CONTRASE√ëAS DE LOS PERFILES.
     private static System.Byte m_pwdMinChars;
     private static System.Byte m_pwdMaxChars;
     private static bool m_pwdMustDiferUserName;
@@ -59,7 +59,7 @@ namespace TEICOCF.WebServices
 
     private static string[] m_regExpForEmailDomains = new string[0];
 
-    // OTROS VALORES DE CONFIGURACI”N
+    // OTROS VALORES DE CONFIGURACI√ìN
     private static System.Byte m_MinAgeToUseThisService;
 
     #endregion "FIN DE VARIABLES PRIVADAS"
@@ -78,7 +78,7 @@ namespace TEICOCF.WebServices
           }
           catch (System.Exception)
           {
-            ; // No se encontrÛ la llave: AzuPassBaseURL en el fichero web.config
+            ; // No se encontr√≥ la llave: AzuPassBaseURL en el fichero web.config
           }
           if (m_ApplicationBaseURL.Length == 0)
           {
@@ -134,7 +134,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// VersiÛn del emsamblado de este Servicio Web XML.
+    /// Versi√≥n del emsamblado de este Servicio Web XML.
     /// </summary>
     public static string ServiceVersion
     {
@@ -192,7 +192,7 @@ namespace TEICOCF.WebServices
         }
         catch (System.Exception Ex)
         {
-          // Registrar Error aquÌ de manera detallada a travÈs de la clase ProcessError.
+          // Registrar Error aqu√≠ de manera detallada a trav√©s de la clase ProcessError.
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "wsSettings", "CheckClientAppsURL");
           processError = null;
@@ -217,7 +217,7 @@ namespace TEICOCF.WebServices
         }
         catch (System.Exception Ex)
         {
-          // Registrar Error aquÌ de manera detallada a travÈs de la clase ProcessError.
+          // Registrar Error aqu√≠ de manera detallada a trav√©s de la clase ProcessError.
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "wsSettings", "MonthBeforeReCheck");
           processError = null;
@@ -242,7 +242,7 @@ namespace TEICOCF.WebServices
         }
         catch (System.Exception Ex)
         {
-          // Registrar Error aquÌ de manera detallada a travÈs de la clase ProcessError.
+          // Registrar Error aqu√≠ de manera detallada a trav√©s de la clase ProcessError.
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "wsSettings", "proxyAddress");
           processError = null;
@@ -268,7 +268,7 @@ namespace TEICOCF.WebServices
         }
         catch (System.Exception Ex)
         {
-          // Registrar Error aquÌ de manera detallada a travÈs de la clase ProcessError.
+          // Registrar Error aqu√≠ de manera detallada a trav√©s de la clase ProcessError.
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "wsSettings", "NetBIOSDomain");
           processError = null;
@@ -294,7 +294,7 @@ namespace TEICOCF.WebServices
         }
         catch (System.Exception Ex)
         {
-          // Registrar Error aquÌ de manera detallada a travÈs de la clase ProcessError.
+          // Registrar Error aqu√≠ de manera detallada a trav√©s de la clase ProcessError.
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "wsSettings", "proxyUser");
           processError = null;
@@ -319,7 +319,7 @@ namespace TEICOCF.WebServices
         }
         catch (System.Exception Ex)
         {
-          // Registrar Error aquÌ de manera detallada a travÈs de la clase ProcessError.
+          // Registrar Error aqu√≠ de manera detallada a trav√©s de la clase ProcessError.
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "wsSettings", "proxyPasswd");
           processError = null;
@@ -330,7 +330,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// URL donde se hospeda la aplicaciÛn "Administrador de perfiles AzuPass"
+    /// URL donde se hospeda la aplicaci√≥n "Administrador de perfiles AzuPass"
     /// </summary>
     public static string AzuPassProfileMgrURL
     {
@@ -373,7 +373,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Tipo de servidor que se est· utilizando, por ahora se permite solamente 'MSSqlServer'.
+    /// Tipo de servidor que se est√° utilizando, por ahora se permite solamente 'MSSqlServer'.
     /// </summary>
     public static string dbServerType
     {
@@ -393,7 +393,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Tipo de servidor que se est· utilizando, por ahora se permite solamente 'MSSqlServer'.
+    /// Tipo de servidor que se est√° utilizando, por ahora se permite solamente 'MSSqlServer'.
     /// </summary>
     public static int dbServerTCPPort
     {
@@ -453,7 +453,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// ContraseÒa de acceso del usuario de la base de datos.
+    /// Contrase√±a de acceso del usuario de la base de datos.
     /// </summary>
     public static string dbUserPass
     {
@@ -472,7 +472,7 @@ namespace TEICOCF.WebServices
     }
 
 		/// <summary>
-		/// OpciÛn "Persist Security Info" de la conexiÛn a la base de datos.
+		/// Opci√≥n "Persist Security Info" de la conexi√≥n a la base de datos.
 		/// </summary>
 		public static bool dbPersistSegInfo
 		{
@@ -491,7 +491,7 @@ namespace TEICOCF.WebServices
 		}
 		
 		/// <summary>
-    /// OpciÛn "Pooling" de la conexiÛn a la base de datos.
+    /// Opci√≥n "Pooling" de la conexi√≥n a la base de datos.
     /// </summary>
     public static bool dbPooling
     {
@@ -511,7 +511,7 @@ namespace TEICOCF.WebServices
     }
 
     /// <summary>
-    /// OpciÛn "Min Pool Size" de la conexiÛn a la base de datos.
+    /// Opci√≥n "Min Pool Size" de la conexi√≥n a la base de datos.
     /// </summary>
     public static int dbMinPoolSize
     {
@@ -530,7 +530,7 @@ namespace TEICOCF.WebServices
     }
 
     /// <summary>
-    /// OpciÛn "Max Pool Size" de la conexiÛn a la base de datos.
+    /// Opci√≥n "Max Pool Size" de la conexi√≥n a la base de datos.
     /// </summary>
     public static int dbMaxPoolSize
     {
@@ -569,9 +569,9 @@ namespace TEICOCF.WebServices
     }
 
 
-    // CONFIGURACIONES PARA LAS CONTRASE—AS.
+    // CONFIGURACIONES PARA LAS CONTRASE√ëAS.
     /// <summary>
-    /// Cantidad mÌnima de caracteres que se permiten para la contraseÒa.
+    /// Cantidad m√≠nima de caracteres que se permiten para la contrase√±a.
     /// </summary>
     private static System.Byte pwdMinChars
     {
@@ -600,7 +600,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Cantidad m·xima de caracteres que se permiten para la contraseÒa.
+    /// Cantidad m√°xima de caracteres que se permiten para la contrase√±a.
     /// </summary>
     private static System.Byte pwdMaxChars
     {
@@ -629,7 +629,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Indicador para saber si se exige que la contraseÒa difiera del nombre del mailbox y del nombre del usuario.
+    /// Indicador para saber si se exige que la contrase√±a difiera del nombre del mailbox y del nombre del usuario.
     /// </summary>
     private static bool pwdMustDiferUserName
     {
@@ -650,7 +650,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Estructura que contiene los valores establecidos para las caracterÌsticas aceptadas de las contraseÒas de los perfiles.
+    /// Estructura que contiene los valores establecidos para las caracter√≠sticas aceptadas de las contrase√±as de los perfiles.
     /// </summary>
     public static passwordRequeriments PasswdRequeriments
     {
@@ -706,7 +706,7 @@ namespace TEICOCF.WebServices
       get
       {
         string str = getWebConfigSimpleValue("EmailTopDomains");
-        // Comprobar mala configuraciÛpn tratando de indicar que se necesita aceptar toda direcciÛn de correo.
+        // Comprobar mala configuraci√≥pn tratando de indicar que se necesita aceptar toda direcci√≥n de correo.
         if (str == "*" || str.IndexOf("|*|") >= 0) //  || str.IndexOf("*|")>=0 || str.IndexOf("|*")>=0
         {
           m_regExpForEmailDomains[0] = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
@@ -717,7 +717,7 @@ namespace TEICOCF.WebServices
 
         for (int i = 0; i <= (m_regExpForEmailDomains.Length - 1); i++)
         {
-          // Comprobar mala configuraciÛn tratando de permitir subdominios, pero olvidando el asterisco (*)
+          // Comprobar mala configuraci√≥n tratando de permitir subdominios, pero olvidando el asterisco (*)
           if (m_regExpForEmailDomains[i].IndexOf(".") == 0) { m_regExpForEmailDomains[i] = "*" + m_regExpForEmailDomains[i]; }
 
           // Tratando aquellos casos que especifican subdominios.
@@ -725,7 +725,7 @@ namespace TEICOCF.WebServices
           {
             // Para los casos que tienen un asterisco y punto (*.) al comienzo porque se necesita 
             // tener en cuenta que existen subdominios.
-            // Como ejemplo serÌan: @"^([\w-\.]+)@([\w-\.]+)\.minaz.cu$" para "*.minaz.cu"
+            // Como ejemplo ser√≠an: @"^([\w-\.]+)@([\w-\.]+)\.minaz.cu$" para "*.minaz.cu"
             //			y			@"^([\w-\.]+)@([\w-\.]+)\.cf.minaz.cu$" para "*.cf.minaz.cu"
             m_regExpForEmailDomains[i] = m_regExpForEmailDomains[i].Substring(2);
             //System.Diagnostics.Debug.WriteLine(m_regExpForEmailDomains[i]);
@@ -734,9 +734,9 @@ namespace TEICOCF.WebServices
           }
           else
           {
-            // ESTE EST¡ OK
-            // Para cuando el valor es lo que viene detr·s de la arroba "@".
-            // SerÌa ejemplo: @"^([\w-\.]+)@" + "minaz.cu" + "$"
+            // ESTE EST√Å OK
+            // Para cuando el valor es lo que viene detr√°s de la arroba "@".
+            // Ser√≠a ejemplo: @"^([\w-\.]+)@" + "minaz.cu" + "$"
             m_regExpForEmailDomains[i] = @"^([\w-\.]+)@" + m_regExpForEmailDomains[i] + "$";
             //System.Diagnostics.Debug.WriteLine(m_regExpForEmailDomains[i]);
           }
@@ -747,7 +747,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Indicador para saber si se exige que la contraseÒa difiera del nombre del mailbox y del nombre del usuario.
+    /// Indicador para saber si se exige que la contrase√±a difiera del nombre del mailbox y del nombre del usuario.
     /// </summary>
     public static System.Byte MinAgeToUseThisService
     {
@@ -774,7 +774,7 @@ namespace TEICOCF.WebServices
     }
 
 
-    // ELEMENTOS DE LA CONFIGURACI”N DE CORRREO PARA ENVÕO DE NOTIFICACIONES.
+    // ELEMENTOS DE LA CONFIGURACI√ìN DE CORRREO PARA ENV√çO DE NOTIFICACIONES.
     private static string SMTPServer
     {
       get
@@ -922,28 +922,28 @@ namespace TEICOCF.WebServices
       }
       else
       {
-        throw new System.Configuration.ConfigurationErrorsException("La llave '" + strKeyName + "' no existe en la secciÛn 'appSettings' del fichero de configuraciÛn 'web.config'");
+        throw new System.Configuration.ConfigurationErrorsException("La llave '" + strKeyName + "' no existe en la secci√≥n 'appSettings' del fichero de configuraci√≥n 'web.config'");
       }
     }
 
     #endregion "FIN DE PROCEDIMIENTOS PRIVADOS"
 
-    #region "PROCEDIMIENTOS P⁄BLICOS"
+    #region "PROCEDIMIENTOS P√öBLICOS"
 
     /// <summary>
-    /// De ser v·lida la URL que se pasa: convierte el "URI scheme" y el nombre del Host a min˙sculas, si el nombre del host 
-    /// es una direcciÛn IPv6, la direcciÛn IPv6 canÛnica es utilizada, el "ScopeId" y otros datos opcionales de datos IPv6 
-    /// son eliminados, elimina los n˙meros de puerto por defecto, si aparecen, canonaliza el camino para URIs ger·rquicas
-    /// compactando secuencias tales como /./, /../, //, incluyendo secuencias de corrido, para URIs ger·rquicas, si el host
+    /// De ser v√°lida la URL que se pasa: convierte el "URI scheme" y el nombre del Host a min√∫sculas, si el nombre del host 
+    /// es una direcci√≥n IPv6, la direcci√≥n IPv6 can√≥nica es utilizada, el "ScopeId" y otros datos opcionales de datos IPv6 
+    /// son eliminados, elimina los n√∫meros de puerto por defecto, si aparecen, canonaliza el camino para URIs ger√°rquicas
+    /// compactando secuencias tales como /./, /../, //, incluyendo secuencias de corrido, para URIs ger√°rquicas, si el host
     /// no termina con barra diagonal derecha (/), esta es agregada, cualquier caracter reservado en la URI es tratado de 
     /// acuerdo al RFC 2396.
     /// </summary>
-    /// <param name="appURL">La URL completa de la aplicaciÛn.</param>
+    /// <param name="appURL">La URL completa de la aplicaci√≥n.</param>
     /// <param name="hostEndWith">Parte del final con la que debe terminar el host dentro de la URL.</param>
     /// <returns></returns>
     public static string parseURL(string appURL, string hostEndWith)
     {
-      // Se emitir· una exception de tipo System.UriFormatException si la URL que se pasa no es v·lida.
+      // Se emitir√° una exception de tipo System.UriFormatException si la URL que se pasa no es v√°lida.
       System.Uri myUri = new Uri(appURL);
 
       if (myUri.Query.Length != 0)
@@ -955,10 +955,10 @@ namespace TEICOCF.WebServices
 
       if (myUri.Scheme != "http" & myUri.Scheme != "https")
       {
-        throw new System.UriFormatException("Solo se admiten URLs para los protocolos \"HTTP\" Û \"HTTPS\"");
+        throw new System.UriFormatException("Solo se admiten URLs para los protocolos \"HTTP\" √≥ \"HTTPS\"");
       }
       /*
-       * Eliminar la restricciÛn de que las URL de las aplicaciones estÈn solamente dentro del dominio "MINAZ.CU"
+       * Eliminar la restricci√≥n de que las URL de las aplicaciones est√©n solamente dentro del dominio "MINAZ.CU"
        * 
       */
       /*
@@ -969,19 +969,19 @@ namespace TEICOCF.WebServices
       }
       */
  			/*
-			 * No chequear que la direcciÛn URL que se pasa como v·lida para la aplicaciÛn termine en slash "/".
+			 * No chequear que la direcci√≥n URL que se pasa como v√°lida para la aplicaci√≥n termine en slash "/".
 			 * 
 			 */
 			/*
       if (!myUri.AbsoluteUri.EndsWith("/"))
       {
         string fileName = myUri.AbsolutePath.Substring(myUri.AbsolutePath.LastIndexOf("/") + 1);
-        throw new System.UriFormatException("Solo se admiten URLs que representen punto de entrada a una aplicaciÛn, " +
-          "por tanto se espera que terminen con el caracter \"/\" o con la ruta a la aplicaciÛn, pero no con el " +
+        throw new System.UriFormatException("Solo se admiten URLs que representen punto de entrada a una aplicaci√≥n, " +
+          "por tanto se espera que terminen con el caracter \"/\" o con la ruta a la aplicaci√≥n, pero no con el " +
           "nombre de un fichero como es el caso que termina con: \"" + fileName + "\", puede que necesite cambiar " +
-          "el nombre del fichero que representa el punto de entrada a la aplicaciÛn para que coincida con la " +
-          "configuraciÛn de su servidor HTTP o cambiar la configuraciÛn de su servidor HTTP para que reconozca " +
-          "los ficheros llamados \"" + fileName + "\" como puntos de entrada de aplicaciÛn.");
+          "el nombre del fichero que representa el punto de entrada a la aplicaci√≥n para que coincida con la " +
+          "configuraci√≥n de su servidor HTTP o cambiar la configuraci√≥n de su servidor HTTP para que reconozca " +
+          "los ficheros llamados \"" + fileName + "\" como puntos de entrada de aplicaci√≥n.");
       }
 			*/
 
@@ -1031,7 +1031,7 @@ namespace TEICOCF.WebServices
       return strCopyrightFoot;
     }
 
-    #endregion "FIN DE PROCEDIMIENTOS P⁄BLICOS"
+    #endregion "FIN DE PROCEDIMIENTOS P√öBLICOS"
 
   } // Fin de la clase
 

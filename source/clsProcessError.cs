@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Descripción breve de clsProcessError.
+	/// DescripciÃ³n breve de clsProcessError.
 	/// </summary>
 	public class ProcessError : Entidad
 	{
@@ -22,7 +22,7 @@ namespace TEICOCF.WebServices
 	
 		/// <summary>
 		/// Contructor. Carga el objeto con los valores que se corresponden con el ID que se 
-		/// pasa como valor del parámetro Id y si el valor del ID no existe en la base de datos
+		/// pasa como valor del parÃ¡metro Id y si el valor del ID no existe en la base de datos
 		/// entonces carga el objeto como si se tratase del intento de agregar un nuevo registro.
 		/// Pasa ala clase base "Entidad" el nombre de la tabla "tbl_Perfil", donde se almacenan 
 		/// los datos que maneja esta clase.
@@ -93,7 +93,7 @@ namespace TEICOCF.WebServices
 		{
 			get 
 			{
-				return	"El mensaje anterior junto a otros datos de interés técnico han sido registrados " + 
+				return	"El mensaje anterior junto a otros datos de interÃ©s tÃ©cnico han sido registrados " + 
 					"para ser analizados por parte del personal de soporte para este servicio en caso " + 
 					"que sea necesario. Rogamos disculpas por las molestias ocasionadas.";
 			}
@@ -126,7 +126,7 @@ namespace TEICOCF.WebServices
 
 		#endregion "FIN DE PROCEDIMIENTOS PRIVADOS"
 
-		#region "PROCEDIMIENTOS PÚBLICOS"
+		#region "PROCEDIMIENTOS PÃšBLICOS"
 
 		public static string getMessageToUser(System.Exception Ex)
 		{
@@ -193,7 +193,7 @@ namespace TEICOCF.WebServices
 			return false;
 		}
 
-		#endregion "FIN DE PROCEDIMIENTOS PÚBLICOS"
+		#endregion "FIN DE PROCEDIMIENTOS PÃšBLICOS"
 
 
 	} // Fin de la clase.

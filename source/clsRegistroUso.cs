@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Descripción breve de clsRegistroUso.
+	/// DescripciÃ³n breve de clsRegistroUso.
 	/// </summary>
 	public class RegistroUso : Entidad
 	{
@@ -21,7 +21,7 @@ namespace TEICOCF.WebServices
 
 		/// <summary>
 		/// Contructor. Carga el objeto con los valores que se corresponden con el ID que se 
-		/// pasa como valor del parámetro Id y si el valor del ID no existe en la base de datos
+		/// pasa como valor del parÃ¡metro Id y si el valor del ID no existe en la base de datos
 		/// entonces carga el objeto como si se tratase del intento de agregar un nuevo registro.
 		/// Pasa ala clase base "Entidad" el nombre de la tabla "tbl_RegistroUso", donde se almacenan 
 		/// los datos que maneja esta clase.
@@ -103,12 +103,12 @@ namespace TEICOCF.WebServices
 		#endregion "FIN DE PROCEDIMIENTOS PRIVADOS"
 
 	
-		#region "PROCEDIMIENTOS PÚBLICOS"
+		#region "PROCEDIMIENTOS PÃšBLICOS"
 	
 		/// <summary>
 		/// Devuelve un DataSet con la lista con el nombre y URL de los sitios favoritos del usuario al 
-		/// que pertenezca el perfil según el IdPerfil que se pasa como parámetro. El número de registros
-		/// está limitado por el valor que se pase en listTop.
+		/// que pertenezca el perfil segÃºn el IdPerfil que se pasa como parÃ¡metro. El nÃºmero de registros
+		/// estÃ¡ limitado por el valor que se pase en listTop.
 		/// </summary>
 		/// <param name="IdPerfil"></param>
 		/// <param name="listTop"></param>
@@ -140,7 +140,7 @@ namespace TEICOCF.WebServices
 		}
 
 		
-		#endregion "FIN DE PROCEDIMIENTOS PÚBLICOS"
+		#endregion "FIN DE PROCEDIMIENTOS PÃšBLICOS"
 	
 	
 	} // Fin de la clase.

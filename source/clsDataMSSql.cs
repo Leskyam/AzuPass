@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Esta es la clase para acceso a datos específicos de Microsoft SQL Server.
+	/// Esta es la clase para acceso a datos especÃ­ficos de Microsoft SQL Server.
 	/// </summary>
 	public class DataMSSql : TEICOCF.WebServices.DataGen
 	{
@@ -12,7 +12,7 @@ namespace TEICOCF.WebServices
 		public DataMSSql()
 		{
 			//
-			// TODO: agregar aquí la lógica del constructor
+			// TODO: agregar aquÃ­ la lÃ³gica del constructor
 			//
 		}
 
@@ -23,11 +23,11 @@ namespace TEICOCF.WebServices
 
 		#endregion "FIN DE CONSTRUCTORES"
 
-		#region "DECLARACIÓN DE VARIABLES"
+		#region "DECLARACIÃ“N DE VARIABLES"
 
 		static System.Collections.Hashtable CommandsCollection = new System.Collections.Hashtable();
 
-		#endregion "FIN DE DECLARACIÓN DE VARIABLES"
+		#endregion "FIN DE DECLARACIÃ“N DE VARIABLES"
 
 		#region "PROCEDIMIENTOS PROPERTY"
 
@@ -37,7 +37,7 @@ namespace TEICOCF.WebServices
 			{
 				if(this.m_ConnectionString.Length==0)
 				{
-					// Antes de formar la cadena de conexión revisar que esté configurado 
+					// Antes de formar la cadena de conexiÃ³n revisar que estÃ© configurado 
 					// MS SQL Server como servidor de Base de datos.
 					if(wsSettings.dbServerType.ToUpper()!=wsSettings.DataServerTypes.MSSql.ToString().ToUpper())
 					{

@@ -1,10 +1,10 @@
-using System;
+Ôªøusing System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Implementa las opciones especÌficas para el manejo de los registro de la tabla "tbl_Intereses". 
-	/// Hereda de la clase "Entidad" algunos mÈtodos como Agregar, Actualizar, Eliminar y el campo ID.
+	/// Implementa las opciones espec√≠ficas para el manejo de los registro de la tabla "tbl_Intereses". 
+	/// Hereda de la clase "Entidad" algunos m√©todos como Agregar, Actualizar, Eliminar y el campo ID.
 	/// </summary>
 	public class Intereses : Entidad
 	{
@@ -22,7 +22,7 @@ namespace TEICOCF.WebServices
 
 		/// <summary>
 		/// Contructor. Carga el objeto con los valores que se corresponden con el ID que se 
-		/// pasa como valor del par·metro Id y si el valor del ID no existe en la base de datos
+		/// pasa como valor del par√°metro Id y si el valor del ID no existe en la base de datos
 		/// entonces carga el objeto como si se tratase del intento de agregar un nuevo registro.
 		/// Pasa ala clase base "Entidad" el nombre de la tabla "tbl_Intereses", donde se almacenan 
 		/// los datos que maneja esta clase.
@@ -60,7 +60,7 @@ namespace TEICOCF.WebServices
 		}
 
 		/// <summary>
-		/// DescripciÛn de los intereses en modo texto.
+		/// Descripci√≥n de los intereses en modo texto.
 		/// </summary>
 		public string Descripcion
 		{

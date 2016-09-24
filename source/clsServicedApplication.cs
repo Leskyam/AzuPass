@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Descripción breve de clsServicedApplication.
+	/// DescripciÃ³n breve de clsServicedApplication.
 	/// </summary>
 	public class ServicedApplication : Entidad
 	{
@@ -22,7 +22,7 @@ namespace TEICOCF.WebServices
 
 	/// <summary>
 	/// Contructor. Carga el objeto con los valores que se corresponden con el ID que se 
-	/// pasa como valor del parámetro Id y si el valor del ID no existe en la base de datos
+	/// pasa como valor del parÃ¡metro Id y si el valor del ID no existe en la base de datos
 	/// entonces carga el objeto como si se tratase del intento de agregar un nuevo registro.
 	/// Pasa ala clase base "Entidad" el nombre de la tabla "tbl_RegistroUso", donde se almacenan 
 	/// los datos que maneja esta clase.
@@ -126,10 +126,10 @@ namespace TEICOCF.WebServices
 
 		#endregion "FIN DE PROCEDIMIENTOS PRIVADOS"
 
-		#region "PROCEDIMIENTOS PÚBLICOS"
+		#region "PROCEDIMIENTOS PÃšBLICOS"
 
 		/// <summary>
-		/// Chequea si es alcanzable la dirección URL almacenada en la variables provada "m_appURL"  
+		/// Chequea si es alcanzable la direcciÃ³n URL almacenada en la variables provada "m_appURL"  
 		/// </summary>
 		/// <returns></returns>
 		public bool isURLReachable()
@@ -146,7 +146,7 @@ namespace TEICOCF.WebServices
 				WRequest = System.Net.WebRequest.Create( clientAppUri );
 				WRequest.Method = strMethod;
 
-				// Determinar si se utiliza Proxy específico.
+				// Determinar si se utiliza Proxy especÃ­fico.
 				System.Net.WebProxy myProxy = new System.Net.WebProxy();
 				myProxy = (System.Net.WebProxy)WRequest.Proxy;
 				if(wsSettings.InternetAccess.proxyAddress!=null)
@@ -173,7 +173,7 @@ namespace TEICOCF.WebServices
 				myProxy.Credentials = proxyCredentials;
 
 				// Las credenciales por defecto son usualmente las credenciales de Windows 
-				// (user name, contraseña, y dominio) de la cuenta bajo la que corre la aplicación.
+				// (user name, contraseÃ±a, y dominio) de la cuenta bajo la que corre la aplicaciÃ³n.
 				WRequest.Credentials = System.Net.CredentialCache.DefaultCredentials;
 				WRequest.Proxy = myProxy;
 				WResponse = (System.Net.WebResponse)WRequest.GetResponse();
@@ -181,7 +181,7 @@ namespace TEICOCF.WebServices
 			}
 			catch(System.Exception Ex)
 			{
-				// Registrar Error aquí de manera detallada a través de la clase ProcessError.
+				// Registrar Error aquÃ­ de manera detallada a travÃ©s de la clase ProcessError.
 				ProcessError processError = new ProcessError();
 				processError.GuardarError(Ex, "ServicedApplication", "isURLReachable", this.m_appName, this.m_appURL, 0);
 				processError = null;
@@ -205,7 +205,7 @@ namespace TEICOCF.WebServices
 			}
 		}
 
-		#endregion "FIN DE PROCEDIMIENTOS PÚBLICOS"
+		#endregion "FIN DE PROCEDIMIENTOS PÃšBLICOS"
 
 } // Fin de la clase.
 

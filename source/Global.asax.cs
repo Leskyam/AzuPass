@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Web;
@@ -7,12 +7,12 @@ using System.Web.SessionState;
 namespace AzuPass 
 {
 	/// <summary>
-	/// Descripción breve de Global.
+	/// DescripciÃ³n breve de Global.
 	/// </summary>
 	public class Global : System.Web.HttpApplication
 	{
 		/// <summary>
-		/// Variable del diseñador requerida.
+		/// Variable del diseÃ±ador requerida.
 		/// </summary>
 		//private System.ComponentModel.IContainer components = null;
 
@@ -62,10 +62,10 @@ namespace AzuPass
 
 		}
 	
-		#region Código generado por el Diseñador de Web Forms
+		#region CÃ³digo generado por el DiseÃ±ador de Web Forms
 		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
+		/// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
+		/// el contenido del mÃ©todo con el editor de cÃ³digo.
 		/// </summary>
 		private void InitializeComponent()
 		{    
