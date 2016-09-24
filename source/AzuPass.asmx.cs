@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 Ôªøusing System.Web;
-=======
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Web;
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
@@ -47,51 +39,9 @@ namespace TEICOCF.WebServices
 	"existentes (\"_LogOn\" y \"_LogOnPlus\") para la validaci√≥n de las credenciales que proporciona el usuario.")]
 	public class AzuPass : System.Web.Services.WebService
 	{
-
-		public AzuPass()
-		{
-			/*
-			//CODEGEN: llamada necesaria para el DiseÒador de servicios Web ASP .NET
-			InitializeComponent();
-			*/
-		}
-
-
 		public AuthHeader wsAuthentication;
 
-
-		#region CÛdigo generado por el DiseÒador de componentes
-		
-		/*
-		
-		//Requerido por el DiseÒador de servicios Web 
-		private IContainer components = null;
-				
-		/// <summary>
-		/// MÈtodo necesario para admitir el DiseÒador. No se puede modificar
-		/// el contenido del mÈtodo con el editor de cÛdigo.
-		/// </summary>
-		private void InitializeComponent()
-		{
-		}
-
-		/// <summary>
-		/// Limpiar los recursos que se estÈn utilizando.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if(disposing && components != null)
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);		
-		}
-		
-		*/
-
-		#endregion
-
-		#region "PROCEDIMIENTOS PRIVADOS"
+        #region "PROCEDIMIENTOS PRIVADOS"
 
 		/// <summary>
 		/// Chequear los datos que se pasan en el encabezado SOAP de algunos miembros para validaci√≥n de 
@@ -330,15 +280,12 @@ namespace TEICOCF.WebServices
 		///	}
 		/// </code>
 		/// </example>
-<<<<<<< HEAD
 		[WebMethod(MessageName = "_LogOn", Description = "_LogOn: comprueba las credenciales del usuario que se pasan como valor de los par√°metros " +
-=======
-		[WebMethod(Description = "_LogOn: comprueba las credenciales del usuario que se pasan como valor de los par·metros " +
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 			 "\"e_mail\" y \"passwd\" para devolver un valor \"true\" si existe alguna coincidencia y \"false\" para cuando " + 
 			 "no la hay. Tambi√©n registra el nombre de la aplicaci√≥n y la URL que se pasan como valor de los par√°metros " + 
 			 "\"clientAppName\" y \"clientAppURL\" a nombre del usuario identificado para formarle una lista de sitios favoritos.")]
-		public bool _LogOn(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_LogOn")]
+        public bool _LogOn(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
 		{
 			return this.LogOn(e_mail, Passwd, clientAppName, clientAppURL, appState)>0?true:false;
 
@@ -355,7 +302,6 @@ namespace TEICOCF.WebServices
 		/// <param name="clientAppURL">URL que representa el punto de entrada de la aplicaci√≥n cliente.</param>
 		/// <param name="appState">Estado de la aplicaci√≥n, "Debug" √≥ "Release", cuando es debug no se 
 		/// realizan algunas funciones y esto aligera la carga, permitiendo que el procedimientos se 
-<<<<<<< HEAD
 		/// ejecute con m√°s rapidez.</param>
 		/// <returns>Devolver√° un DataSet "true" en caso de ser identificado un perfil que corresponda con los par√°metros 
 		/// e_mail y Passwd, en caso contrario devolver√° "false".</returns>
@@ -368,19 +314,6 @@ namespace TEICOCF.WebServices
              "buen funcionamiento del sistema, entonces se devolver√° un error que podr√° ser mostrado al usuario para informaci√≥n.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_LogOnPlus")]
         public System.Data.DataSet _LogOnPlus(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
-=======
-		/// ejecute con m·s rapidez.</param>
-		/// <returns>Devolver· un DataSet "true" en caso de ser identificado un perfil que corresponda con los par·metros 
-		/// e_mail y Passwd, en caso contrario devolver· "false".</returns>
-		[WebMethod(Description = "_LogOnPlus: comprueba las credenciales del usuario que se pasan como valor de los par·metros " +
-			 "\"e_mail\" y \"passwd\". Si el usuario es identificado de manera correcta devuelve un DataSet con dos tablas la " + 
-			 "primera, llamada \"Perfil\" contiene los siguientes campos: \"ID\", \"Nombre\", \"Apellidos\", \"e_mail\", \"FechaNac\", " + 
-			 "\"Sexo\" y \"FechaRegistro\". La segunda tabla llamada \"Favoritos\" contiene los siguientes campos: \"Visitas\", \"Desde\", " + 
-			 "\"Hasta\", \"appName\" y \"appURL\" y representan las cinco (5) aplicaciones m·s utilizadas por el usuario. Si las " + 
-			 "credenciales del usuario no son v·lidas Û si sucediera alg˙n error en el proceso de identificaciÛn que impidiera el " + 
-			 "buen funcionamiento del sistema, entonces se devolver· un error que podr· ser mostrado al usuario para informaciÛn.")]
-		public System.Data.DataSet _LogOnPlus(string e_mail, string Passwd, string clientAppName, string clientAppURL, ServicedApplication.enuApplicationState appState)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			int IdPerfil = 0;
 			IdPerfil = this.LogOn(e_mail, Passwd, clientAppName, clientAppURL, appState);  
@@ -447,16 +380,10 @@ namespace TEICOCF.WebServices
 		[WebMethod(MessageName = "_getProfileFavorites", Description = "_getProfileFavorites: valida las credenciales que se pasan como valor " + 
 			 "de los par√°metros \"e_mail\" y \"Passwd\", de ser correctas devuelve un DataSet con una tabla llamada " + 
 			 "\"Favoritos\" que contiene los siguientes campos: \"Visitas\", \"Desde\", \"Hasta\", \"appName\" y " + 
-<<<<<<< HEAD
 			 "\"appURL\" y representan las aplicaciones m√°s utilizadas por el usuario identificado. La lista de las " + 
 			 "aplicaciones estar√° limitada en cantidad por el valor del par√°metro \"cantEnLista\".")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getProfileFavorites")]
         public System.Data.DataSet _getProfileFavorites(string e_mail, string Passwd, int cantEnLista)
-=======
-			 "\"appURL\" y representan las aplicaciones m·s utilizadas por el usuario identificado. La lista de las " + 
-			 "aplicaciones estar· limitada en cantidad por el valor del par·metro \"cantEnLista\".")]
-		public System.Data.DataSet _getProfileFavorites(string e_mail, string Passwd, int cantEnLista)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			try
 			{
@@ -496,18 +423,11 @@ namespace TEICOCF.WebServices
 
 		[WebMethod(MessageName = "_getServicedApplications", Description = "_getServicedApplications: devuelve un DataSet con una tabla llamada " + 
 			 "\"ServicedApplications\" que contiene los siguientes campos: \"Visitas\", \"Desde\", \"Hasta\", \"appName\" y " + 
-<<<<<<< HEAD
 			 "\"appURL\" y representan todas las aplicaciones que hacen uso de este servicio para identificaci√≥n de usuario " + 
 			 "cuya URL ha sido verificada como existente. La lista de las aplicaciones estar√° limitada en cantidad por el " + 
 			 "valor del par√°metro \"cantEnLista\".")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServicedApplications")]
         public System.Data.DataSet _getServicedApplications(int listTop)
-=======
-			 "\"appURL\" y representan todas las aplicaciones que hacen uso de este servicio para identificaciÛn de usuario " + 
-			 "cuya URL ha sido verificada como existente. La lista de las aplicaciones estar· limitada en cantidad por el " + 
-			 "valor del par·metro \"cantEnLista\".")]
-		public System.Data.DataSet _getServicedApplications(int listTop)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			try
 			{
@@ -536,19 +456,11 @@ namespace TEICOCF.WebServices
 
 		} // Fin de _getServicedApplications
 
-<<<<<<< HEAD
         [WebMethod(MessageName = "_getServiceAdmins", Description = "_getServiceAdmins: devuelve un DataSet con una tabla llamada \"WebServiceAdmins\" " + 
 			 "con el √∫nico campo \"e_mail\" donde aparecer√° la direcci√≥n electr√≥nica de cada uno de las personas que aparezca en la " + 
 			 "configuraci√≥n de este servicio como administrador del mismo.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServiceAdmins")]
         public System.Data.DataSet _getServiceAdmins()
-=======
-
-		[WebMethod(MessageName = "_getServiceAdmins", Description = "_getServiceAdmins: devuelve un DataSet con una tabla llamada \"WebServiceAdmins\" " + 
-			 "con el ˙nico campo \"e_mail\" donde aparecer· la direcciÛn electrÛnica de cada uno de las personas que aparezca en la " + 
-			 "configuraciÛn de este servicio como administrador del mismo.")]
-		public System.Data.DataSet _getServiceAdmins()
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			try
 			{
@@ -589,16 +501,10 @@ namespace TEICOCF.WebServices
 		} // Fin de _getServiceAdmins
 
 
-<<<<<<< HEAD
 		[WebMethod(MessageName = "_getProfileManagerUrl", Description = "_getProfileManagerUrl: devuelve una cadena con la URL de donde se hospeda la aplicaci√≥n " + 
 			 "\"Administrador de perfiles AzuPass\", tambi√©n llamada: AzuPassProfileMgr.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getProfileManagerUrl")]
         public string _getProfileManagerUrl()
-=======
-		[WebMethod(MessageName = "_getProfileManagerURL", Description = "_getProfileManagerURL: devuelve una cadena con la URL de donde se hospeda la aplicaciÛn " + 
-			 "\"Administrador de perfiles AzuPass\", tambiÈn llamada: AzuPassProfileMgr.")]
-		public string _getProfileManagerURL()
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			try
 			{
@@ -624,11 +530,12 @@ namespace TEICOCF.WebServices
 				//throw new System.Exception(errorMessage);
 			}
 		
-		} // Fin de _getProfileManagerURL 
+		} // Fin de _getProfileManagerUrl 
 
 
 		[WebMethod(MessageName = "_getAbout", Description = "_getAbout: devuelve una cadena en formato HTML codificado con el contenido del \"Acerca de\" de este servicio.")]
-		public string _getAbout()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getAbout")]
+        public string _getAbout()
 		{
 			try
 			{
@@ -745,14 +652,9 @@ namespace TEICOCF.WebServices
 		} // Fin de _getAbout
 
 
-<<<<<<< HEAD
 		[WebMethod(MessageName = "_getLogoImageSrc", Description = "_getLogoImageSrc: devuelve una cadena con la direcci√≥n http donde se encuentra la imagen que representa el logo de este servicio.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getLogoImageSrc")]
         public string _getLogoImageSrc()
-=======
-		[WebMethod(MessageName = "_getLogoImageSrc", Description = "_getLogoImageSrc: devuelve una cadena con la direcciÛn http donde se encuentra la imagen que representa el logo de este servicio.")]
-		public string _getLogoImageSrc()
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			try
 			{
@@ -782,7 +684,8 @@ namespace TEICOCF.WebServices
 
 
 		[WebMethod(MessageName = "_getServiceShortName", Description = "")]
-		public string _getServiceShortName()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServiceShortName")]
+        public string _getServiceShortName()
 		{
 			try
 			{
@@ -812,7 +715,8 @@ namespace TEICOCF.WebServices
 
 
 		[WebMethod(MessageName = "_getServiceFullName", Description = "")]
-		public string _getServiceFullName()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getServiceFullName")]
+        public string _getServiceFullName()
 		{
 			try
 			{
@@ -840,11 +744,11 @@ namespace TEICOCF.WebServices
 
 		} // Fin de _getServiceFullName
 
-		
 		[WebMethod(MessageName = "_getListCatOcupacionales", Description = "_getListCatOcupacionales: devuelve un DataSet con " + 
 			 "una √∫nica tabla con la lista de las categor√≠as ocupacionales registradas para los perfiles de este servicio. La " + 
 			 "tabla devuelta tiene los siguienjtes campos \"Id\" y \"Descripcion\".")]
-		public System.Data.DataSet _getListCatOcupacionales()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/_getListCatOcupacionales")]
+        public System.Data.DataSet _getListCatOcupacionales()
 		{
 			try
 			{
@@ -878,16 +782,10 @@ namespace TEICOCF.WebServices
 
 		#region "MIEMBROS PROTEGIDOS POR ENCABEZADOS SOAP"
 
-<<<<<<< HEAD
         [SoapHeader("wsAuthentication", Direction = SoapHeaderDirection.In)]
 		[WebMethod(MessageName = "Register", Description = "Agrega un nuevo perfil con los valores de los par√°metros que se pasan.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/Register")]
         public bool Register(string Nombre, string Apellidos, string e_mail, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
-=======
-		[SoapHeader("wsAuthentication")]
-		[WebMethod(MessageName = "Register", Description = "Agrega un nuevo perfil con los valores de los par·metros que se pasan.")]
-		public bool Register(string Nombre, string Apellidos, string e_mail, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			// Chequear el encabezado SOAP.
 			this.checkSoapHeader();
@@ -966,14 +864,9 @@ namespace TEICOCF.WebServices
 		[WebMethod(MessageName = "EditProfile", Description = "Devuelve un DataSet con los datos que corresponden " + 
 			 "al usuario cuyos email y passwd se pasan como valor de los respectivos par√°metros, el DataSet contiene " + 
 			 "dos tablas con los siguientes nombres \"tbl_Perfil\" y \"lst_CatOcupacional\" con los datos del perfil " + 
-<<<<<<< HEAD
 			 "que se solicita editar y con la lista de categor√≠as ocupacionales disponibles, respectivamente.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/EditProfile")]
         public System.Data.DataSet EditProfile(string Email, string Passwd)
-=======
-			 "que se solicita editar y con la lista de categorÌas ocupacionales disponibles, respectivamente.")]
-		public System.Data.DataSet EditProfile(string Email, string Passwd)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			// Comprobar encabezados SOAP
 			this.checkSoapHeader();
@@ -1024,7 +917,8 @@ namespace TEICOCF.WebServices
 			 "a un nuevo Perfil, el DataSet contiene dos tablas con los siguientes nombres \"Perfil\" y \"lstCatOcupacionales\". " + 
 			 "Las tablas contienen los siguientes campos: \"Nombre\", \"Apellidos\", \"e_mail\", \"FechaNac\", \"Sexo\", " + 
 			 "\"IdCatOcupacional\" para la tabla \"Perfil\" y los campos: \"Id\" y \"Descripcion\" para la tabla \"lstCatOcupacionales\".")]
-		public System.Data.DataSet PrepareNewProfile()
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/PrepareNewProfile")]
+        public System.Data.DataSet PrepareNewProfile()
 		{
 			// Comprobar encabezados SOAP
 			this.checkSoapHeader();
@@ -1069,14 +963,9 @@ namespace TEICOCF.WebServices
 		
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "UpdateProfile", Description = "Actualizar los datos del perfil que concuerde " + 
-<<<<<<< HEAD
 			 "con las credenciales que se pasan (e_mail y Passwd) con los datos que contienen los dem√°s par√°metros.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/UpdateProfile")]
         public bool UpdateProfile(string e_mail, string Passwd, string Nombre, string Apellidos, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
-=======
-			 "con las credenciales que se pasan (e_mail y Passwd) con los datos que contienen los dem·s par·metros.")]
-		public bool UpdateProfile(string e_mail, string Passwd, string Nombre, string Apellidos, System.DateTime FechaNac, Perfil.enuSexo Sexo, int IdCatOcupacional, string DescripcionIntereses)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			// Chequear el encabezado SOAP.
 			this.checkSoapHeader();
@@ -1186,14 +1075,9 @@ namespace TEICOCF.WebServices
 
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "getPasswdRequeriments", Description = "Obtener la estructura que almacena los " + 
-<<<<<<< HEAD
 			 "valores que representan los requerimientos de la contrase√±a.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getPasswdRequeriments")]
         public wsSettings.passwordRequeriments getPasswdRequeriments()
-=======
-			 "valores que representan los requerimientos de la contraseÒa.")]
-		public wsSettings.passwordRequeriments getPasswdRequeriments()
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 			// Chequear los encabezados SOAP
 			//this.checkSoapHeader();
@@ -1228,18 +1112,11 @@ namespace TEICOCF.WebServices
 
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "getChangeProfilePasswdWarning", Description = "getChangeProfilePasswdWarning: emite un mensaje " +
-<<<<<<< HEAD
 			 "para que sirva de advertencia al usuario sobre las caracter√≠sticas que se espera tenga la nueva contrase√±a, sobre " +
 			 "cantidad de caracteres m√≠nimos y m√°ximos admitidos, y si se exige que la nueva contrase√±a difiera del nombre, los " + 
 			 "apellidos, el email o alguna parte de ellos o la uni√≥n de los mismos.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getChangeProfilePasswdWarning")]
         public string getChangeProfilePasswdWarning()
-=======
-			 "para que sirva de advertencia al usuario sobre las caracterÌsticas que se espera tenga la nueva contraseÒa, sobre " +
-			 "cantidad de caracteres mÌnimos y m·ximos admitidos, y si se exige que la nueva contraseÒa difiera del nombre, los " + 
-			 "apellidos, el email o alguna parte de ellos o la uniÛn de los mismos.")]
-		public string getChangeProfilePasswdWarning()
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 
 			// Chequear los encabezados SOAP
@@ -1283,16 +1160,10 @@ namespace TEICOCF.WebServices
 
 
 		[SoapHeader("wsAuthentication")]
-<<<<<<< HEAD
 		[WebMethod(MessageName = "changeProfilePasswd", Description = "changeProfilePasswd: cambiar la contrase√±a del perfil " +
 			 "que corresponda con las credenciales que se pasan como valor de los par√°metros \"e_mail\" y \"current_Passwd\".")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/changeProfilePasswd")]
         public bool changeProfilePasswd(string e_mail, string current_Passwd, string new_Passwd)
-=======
-		[WebMethod(MessageName = "changeProfilePasswd", Description = "changeProfilePasswd: cambiar la contraseÒa del perfil " +
-			 "que corresponda con las credenciales que se pasan como valor de los par·metros \"e_mail\" y \"current_Passwd\".")]
-		public bool changeProfilePasswd(string e_mail, string current_Passwd, string new_Passwd)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 
 			// Chequear los encabezados SOAP
@@ -1344,18 +1215,11 @@ namespace TEICOCF.WebServices
 
 		[SoapHeader("wsAuthentication")]
 		[WebMethod(MessageName = "getChangeProfileEmailWarning", Description = "getChangeProfileEmailWarning: emite un mensaje " +
-<<<<<<< HEAD
 			 "para que sirva de advertencia al usuario sobre el proceso de cambio de su direcci√≥n de correo, anunci√°ndole que " + 
 			 "si el cambio es efectivo tambi√©n se cambiar√° la contrase√±a a un valor autogenerado por cuestiones de seguridad y " +
 			 "entonces recibir√° un correo con la nueva contrase√±a como la primera vez que se registr√≥.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getChangeProfileEmailWarning")]
         public string getChangeProfileEmailWarning()
-=======
-			 "para que sirva de advertencia al usuario sobre el proceso de cambio de su direcciÛn de correo, anunci·ndole que " + 
-			 "si el cambio es efectivo tambiÈn se cambiar· la contraseÒa a un valor autogenerado por cuestiones de seguridad y " +
-			 "entonces recibir· un correo con la nueva contraseÒa como la primera vez que se registrÛ.")]
-		public string getChangeProfileEmailWarning()
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 
 			// Chequear los encabezados SOAP
@@ -1410,7 +1274,8 @@ namespace TEICOCF.WebServices
 			 "del perfil que se identifique seg√∫n los valores de las credenciales que se pasan en los par√°metros \"currente_e_mail\" " + 
 			 "y \"Passwd\" por la direcci√≥n que se pasa como valor de \"new_e_mail\". Los valores devueltos en forma de cadena " + 
 			 "son los mensajes que indican lo que ha sucedido, si fue efectivo el cambio, y si no pudo ser, entonces la causa.")]
-		public string changeProfileEmail(string current_e_mail, string Passwd, string new_e_mail)
+        [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/changeProfileEmail")]
+        public string changeProfileEmail(string current_e_mail, string Passwd, string new_e_mail)
 		{
 
 			// Chequear los encabezados SOAP
@@ -1509,7 +1374,6 @@ namespace TEICOCF.WebServices
 
 
 		[SoapHeader("wsAuthentication")]
-<<<<<<< HEAD
 		[WebMethod(MessageName = "resendWelcomeEmail", Description = "resendWelcomeEmail: Reenv√≠a, a la direcci√≥n de correo " + 
 			 "especificada a trav√©s del par√°metro \"e_mail\", el correo electr√≥nico de bienvenida que genera este servicio " + 
 			 "para los nuevos usuarios al registrarse la primera vez, este correo incluye entre otros datos la contrase√±a " + 
@@ -1517,14 +1381,6 @@ namespace TEICOCF.WebServices
 			 "contratiempo que impida el env√≠o, se devolver√° un error.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/resendWelcomeEmail")]
         public bool resendWelcomeEmail(string e_mail)
-=======
-		[WebMethod(MessageName = "resendWelcomeEmail", Description = "resendWelcomeEmail: ReenvÌa, a la direcciÛn de correo " + 
-			 "especificada a travÈs del par·metro \"e_mail\", el correo electrÛnico de bienvenida que genera este servicio " + 
-			 "para los nuevos usuarios al registrarse la primera vez, este correo incluye entre otros datos la contraseÒa " + 
-			 "del usuario. De no existir el perfil que coincida con la direcciÛn de correo especificada o si sucede alg˙n " + 
-			 "contratiempo que impida el envÌo, se devolver· un error.")]
-		public bool resendWelcomeEmail(string e_mail)
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		{
 
 			// Chequear los encabezados SOAP
@@ -1558,35 +1414,20 @@ namespace TEICOCF.WebServices
 		} // Fin de resendWelcomeEmail
 
 
-
 		#endregion "FIN DE MIEMBROS PROTEGIDOS POR ENCABEZADOS SOAP"
 
-<<<<<<< HEAD
 		#region "MIEMBROS EN DEPURACI√ìN"
 		#endregion "FIN DE MIEMBROS EN DEPURACI√ìN"
-=======
-		#region "MIEMBROS EN DEPURACI”N"
-
-
-
-		#endregion "FIN DE MIEMBROS EN DEPURACI”N"
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 
 		#region "MIEMBROS NO DEPURADOS"
-		
-		
 		#endregion "FIN DE MIEMBROS NO DEPURADOS"
 
 		#region "MIEMBROS DE PRUEBA"
 
 
 		//[SoapHeader("wsAuthentication")]
-<<<<<<< HEAD
 		[WebMethod(MessageName = "Test", Description = "M√©todo Web de prueba.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/Test")]
-=======
-		[WebMethod(Description = "MÈtodo Web de prueba.")]
->>>>>>> parent of 0978b43... Adding AzuPass.asmx.cs file with last modifications
 		public string Test()
 		{
 			// Chequear los encabezados SOAP
