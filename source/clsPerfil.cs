@@ -1,10 +1,10 @@
-using System;
+Ôªøusing System;
 
 namespace TEICOCF.WebServices
 {
   /// <summary>
-  /// Implementa las opciones especÌficas para el manejo de los registro de la tabla "tbl_Perfil". 
-  /// Hereda de la clase "Entidad" algunos mÈtodos como Agregar, Actualizar, Eliminar y el campo ID.
+  /// Implementa las opciones espec√≠ficas para el manejo de los registro de la tabla "tbl_Perfil". 
+  /// Hereda de la clase "Entidad" algunos m√©todos como Agregar, Actualizar, Eliminar y el campo ID.
   /// </summary>
   public class Perfil : Entidad
   {
@@ -24,7 +24,7 @@ namespace TEICOCF.WebServices
 
     /// <summary>
     /// Contructor. Carga el objeto con los valores que se corresponden con el ID que se 
-    /// pasa como valor del par·metro Id y si el valor del ID no existe en la base de datos
+    /// pasa como valor del par√°metro Id y si el valor del ID no existe en la base de datos
     /// entonces carga el objeto como si se tratase del intento de agregar un nuevo registro.
     /// Pasa ala clase base "Entidad" el nombre de la tabla "tbl_Perfil", donde se almacenan 
     /// los datos que maneja esta clase.
@@ -58,7 +58,7 @@ namespace TEICOCF.WebServices
     #region "PROCEDIMIENTOS PROPERTY"
 
     /// <summary>
-    /// Nombre. Devolver· Exception si es una cadena vacÌa o si la cadena excede los 25 caracteres.
+    /// Nombre. Devolver√° Exception si es una cadena vac√≠a o si la cadena excede los 25 caracteres.
     /// </summary>
     public string Nombre
     {
@@ -68,7 +68,7 @@ namespace TEICOCF.WebServices
         value = value.Trim();
         if (value == string.Empty || value.Length > 25)
         {
-          throw new System.Exception("El elementos \"Nombre\" no puede ser una cadena vacÌa y no debe exceder de 25 caracteres.");
+          throw new System.Exception("El elementos \"Nombre\" no puede ser una cadena vac√≠a y no debe exceder de 25 caracteres.");
         }
         this.m_Nombre = value;
         this.dsEntidad.Tables[0].Rows[0]["Nombre"] = value;
@@ -77,7 +77,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Apellidos. Devolver· Exception si es una cadena vacÌa o si la cadena excede los 75 caracteres.
+    /// Apellidos. Devolver√° Exception si es una cadena vac√≠a o si la cadena excede los 75 caracteres.
     /// </summary>
     public string Apellidos
     {
@@ -87,7 +87,7 @@ namespace TEICOCF.WebServices
         value = value.Trim();
         if (value == string.Empty || value.Length > 75)
         {
-          throw new System.Exception("El elementos \"Apellidos\" no puede ser una cadena vacÌa y no debe exceder de 75 caracteres.");
+          throw new System.Exception("El elementos \"Apellidos\" no puede ser una cadena vac√≠a y no debe exceder de 75 caracteres.");
         }
         this.m_Apellidos = value;
         this.dsEntidad.Tables[0].Rows[0]["Apellidos"] = value;
@@ -96,8 +96,8 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// DirecciÛn de correo. Devolver· Exception si es una cadena vacÌa o si la cadena excede los 75 caracteres y
-    /// tambiÈn si no corresponde con alguno de los dominios de correo permitidos en el fiichero "Web.config".
+    /// Direcci√≥n de correo. Devolver√° Exception si es una cadena vac√≠a o si la cadena excede los 75 caracteres y
+    /// tambi√©n si no corresponde con alguno de los dominios de correo permitidos en el fiichero "Web.config".
     /// </summary>
     public string Email
     {
@@ -108,11 +108,11 @@ namespace TEICOCF.WebServices
         value = value.Trim();
         if (value == string.Empty || value.Length > 75)
         {
-          throw new System.Exception("El elementos \"DirecciÛn de correo\" no puede ser una cadena vacÌa y no debe exceder de 75 caracteres.");
+          throw new System.Exception("El elementos \"Direcci√≥n de correo\" no puede ser una cadena vac√≠a y no debe exceder de 75 caracteres.");
         }
         if (!isValidEmail(value))
         {
-          throw new System.Exception("El elemento \"DirecciÛn de correo\" debe tener un formato v·lido y pertenecer a un dominio permitido.");
+          throw new System.Exception("El elemento \"Direcci√≥n de correo\" debe tener un formato v√°lido y pertenecer a un dominio permitido.");
         }
         this.m_Email = value;
         this.dsEntidad.Tables[0].Rows[0]["e_mail"] = value;
@@ -120,9 +120,9 @@ namespace TEICOCF.WebServices
     }
 
     /// <summary>
-    /// ContraseÒa. Devolver· Exception si no cumple con los requerimientos mÌnimos y/o m·ximos de cantidad de 
-    /// caracteres y tambiÈn, si se exige en el Web.config, impedir· que esta sea igual o estÈ contenida dentro 
-    /// del Nombre, los Apellidos Û la propia direcciÛn electrÛnica.
+    /// Contrase√±a. Devolver√° Exception si no cumple con los requerimientos m√≠nimos y/o m√°ximos de cantidad de 
+    /// caracteres y tambi√©n, si se exige en el Web.config, impedir√° que esta sea igual o est√© contenida dentro 
+    /// del Nombre, los Apellidos √≥ la propia direcci√≥n electr√≥nica.
     /// </summary>
     public string Passwd
     {
@@ -132,7 +132,7 @@ namespace TEICOCF.WebServices
         value = value.Trim();
         if (value.Length < wsSettings.PasswdRequeriments.pwdMinChars || value.Length > wsSettings.PasswdRequeriments.pwdMaxChars)
         {
-          throw new System.Exception("El elemento \"ContraseÒa\" no comple con la cantidad de caracteres requeridos. " +
+          throw new System.Exception("El elemento \"Contrase√±a\" no comple con la cantidad de caracteres requeridos. " +
             "Debe ser mayor o igual a " + wsSettings.PasswdRequeriments.pwdMinChars + " y menor o igual a " +
             wsSettings.PasswdRequeriments.pwdMaxChars);
         }
@@ -146,8 +146,8 @@ namespace TEICOCF.WebServices
             //string str = string.Concat(this.m_Nombre,this.m_Apellidos,this.m_Email);
             //System.Diagnostics.Debug.WriteLine();
 
-            throw new System.Exception("El elemento \"ContraseÒa\" no puede ser igual o estar contenida dentro de los valores " +
-              "de \"Nombre\", \"Apellidos\" Û \"e_mail\" porque asÌ lo indica la configuraciÛn de este servicio.");
+            throw new System.Exception("El elemento \"Contrase√±a\" no puede ser igual o estar contenida dentro de los valores " +
+              "de \"Nombre\", \"Apellidos\" √≥ \"e_mail\" porque as√≠ lo indica la configuraci√≥n de este servicio.");
           }
         }
         this.m_Passwd = value;
@@ -157,8 +157,8 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Fecha de nacimiento. Devolver· Exception si la fecha indica que la persona no cumple con los aÒos de vida
-    /// necesarios para hacer uso del servicio seg˙n lo establecido en el fichero Web.config.
+    /// Fecha de nacimiento. Devolver√° Exception si la fecha indica que la persona no cumple con los a√±os de vida
+    /// necesarios para hacer uso del servicio seg√∫n lo establecido en el fichero Web.config.
     /// </summary>
     public System.DateTime FechaNac
     {
@@ -168,7 +168,7 @@ namespace TEICOCF.WebServices
         if (value.AddYears(wsSettings.MinAgeToUseThisService) > System.DateTime.Now)
         {
           throw new System.Exception("El elemento \"Fecha de nacimiento\" indica que no cumple con la edad requerida (" +
-            wsSettings.MinAgeToUseThisService + " aÒos) para hacer uso de este servicio.");
+            wsSettings.MinAgeToUseThisService + " a√±os) para hacer uso de este servicio.");
         }
         this.m_FechaNac = value;
         this.dsEntidad.Tables[0].Rows[0]["FechaNac"] = value;
@@ -177,7 +177,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Sexo. No tiene validaciÛn porque se deriva de uno de los dos valores posibles en la estructura "enuSexo".
+    /// Sexo. No tiene validaci√≥n porque se deriva de uno de los dos valores posibles en la estructura "enuSexo".
     /// </summary>
     public enuSexo Sexo
     {
@@ -191,17 +191,17 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Id de categorÌa ocupacional. Devolver· exception si el valor no existe en la tabla "tbl_CatOcupacional".
+    /// Id de categor√≠a ocupacional. Devolver√° exception si el valor no existe en la tabla "tbl_CatOcupacional".
     /// </summary>
     public int IdCatOcupacional
     {
       get { return this.m_IdCatOcupacional; }
-      // Revisar luego si es necesario comprobar aquÌ que este ID exista en la base de datos.
+      // Revisar luego si es necesario comprobar aqu√≠ que este ID exista en la base de datos.
       set
       {
         // Chequear si existe el Id en la tabla tbl_CatOcupacional.
         CatOcupacional catOcup = new CatOcupacional();
-        if (!catOcup.existByID(value)) { throw new System.Exception("El ID de \"CategorÌa Ocupacional\" " + value + " no est· registrado."); }
+        if (!catOcup.existByID(value)) { throw new System.Exception("El ID de \"Categor√≠a Ocupacional\" " + value + " no est√° registrado."); }
         this.m_IdCatOcupacional = value;
         this.dsEntidad.Tables[0].Rows[0]["IdCatOcupacional"] = value;
       }
@@ -209,7 +209,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Fecha de registro. Devolver· Exception si la fecha es mayor que la actual.
+    /// Fecha de registro. Devolver√° Exception si la fecha es mayor que la actual.
     /// </summary>
     public System.DateTime FechaRegistro
     {
@@ -227,7 +227,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Habilitado. No tiene validaciÛn porque puede ser uno de los dos valores del tipo de datos boolean.
+    /// Habilitado. No tiene validaci√≥n porque puede ser uno de los dos valores del tipo de datos boolean.
     /// </summary>
     public bool Habilitado
     {
@@ -241,7 +241,7 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Intereses. Devolver· Exception si es una cadena vacÌa.
+    /// Intereses. Devolver√° Exception si es una cadena vac√≠a.
     /// </summary>
     public string DescripIntereses
     {
@@ -288,10 +288,10 @@ namespace TEICOCF.WebServices
 
     /*
     /// <summary>
-    /// Comprueba si existe la direcciÛn de correo que se pasa como valor del par·metro "e_mail"
+    /// Comprueba si existe la direcci√≥n de correo que se pasa como valor del par√°metro "e_mail"
     /// </summary>
-    /// <param name="e_mail">DirecciÛn de correo que se necesita comprobar.</param>
-    /// <returns>TRUE si existe la direcciÛn de correo, en otro caso FALSE.</returns>
+    /// <param name="e_mail">Direcci√≥n de correo que se necesita comprobar.</param>
+    /// <returns>TRUE si existe la direcci√≥n de correo, en otro caso FALSE.</returns>
     private int getIdByEmail(string e_mail)
     {
       System.Object[] Args = {e_mail};
@@ -306,12 +306,12 @@ namespace TEICOCF.WebServices
 
     #endregion "FIN DE PROCEDIMIENTOS PRIVADOS"
 
-    #region "PROCEDIMIENTOS P⁄BLICOS"
+    #region "PROCEDIMIENTOS P√öBLICOS"
 
     /// <summary>
-    /// Enviar correo de notificaciÛn para nuevo registro de usuario o para cuando ha olvidado su contraseÒa.
+    /// Enviar correo de notificaci√≥n para nuevo registro de usuario o para cuando ha olvidado su contrase√±a.
     /// </summary>
-    /// <returns>TRUE si es enviada la notificaciÛn, de otra manera FALSE.</returns>
+    /// <returns>TRUE si es enviada la notificaci√≥n, de otra manera FALSE.</returns>
     public bool sendWelcomeEmail()
     {
       try
@@ -326,7 +326,7 @@ namespace TEICOCF.WebServices
         {
           ServiceAdmins = i != 0 ? ServiceAdmins + ", " : "";
           // <a href="mailto:user@dominio.cu?subject=Asunto&body=Cuerpo del mensaje">mailto sintaxis</a>
-          ServiceAdmins = ServiceAdmins + "<a href=\"mailto:" + aryServiceAdmins[i] + "?subject=Sobre servicio " + ServiceShortName + "&body=Hola, soy " + Nombre + " " + Apellidos + " y estoy registrado a travÈs del servicio " + ServiceShortName + ", le escribo porque...\">" + aryServiceAdmins[i] + "</a>";
+          ServiceAdmins = ServiceAdmins + "<a href=\"mailto:" + aryServiceAdmins[i] + "?subject=Sobre servicio " + ServiceShortName + "&body=Hola, soy " + Nombre + " " + Apellidos + " y estoy registrado a trav√©s del servicio " + ServiceShortName + ", le escribo porque...\">" + aryServiceAdmins[i] + "</a>";
           //System.Diagnostics.Debug.WriteLine(ServiceAdmins);
         }
 
@@ -335,14 +335,14 @@ namespace TEICOCF.WebServices
         string strTab = System.Web.UI.HtmlTextWriter.DefaultTabString;
         // Las comillas dobles.
         //char strQuote = System.Web.UI.HtmlTextWriter.DoubleQuoteChar;
-        // Nueva lÌnea
+        // Nueva l√≠nea
         string strNewLine = System.Environment.NewLine;
         System.Text.StringBuilder sbHTML = new System.Text.StringBuilder();
 
         // La base de los links que contiene el correo.
         string strContentBase = AzuPassProfileMgrURL; //HttpContext.Current.Request.Url.ToString().Substring(0, HttpContext.Current.Request.Url.ToString().IndexOf(HttpContext.Current.Request.ApplicationPath)+HttpContext.Current.Request.ApplicationPath.Length+1);
 
-        // Estilos para poner en los elementos style porque algunos clientes web de mensajerÌa no entienden de estilos empotrados, tiene que ser en-lÌnea.
+        // Estilos para poner en los elementos style porque algunos clientes web de mensajer√≠a no entienden de estilos empotrados, tiene que ser en-l√≠nea.
         string style_body = "font-size: 8pt; color: #000000; font-family: Verdana; text-decoration: none";
         string style_td_title = "font-size: 10pt; color: #47639a; font-weight: bold; font-family: Verdana; background-color: #f0f8ff; border-right: #47639a 1px solid; border-top: #47639a 1px solid; border-left: #47639a 1px solid; border-bottom: #47639a 1px solid; padding: 2px 2px 2px 2px";
         string style_td = "font-size: 8pt; color: #000000; font-family: Verdana; text-decoration: none; padding-right: 2px; padding-left: 2px; padding-bottom: 2px; margin: 2px; padding-top: 2px";
@@ -362,31 +362,31 @@ namespace TEICOCF.WebServices
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td_content + "\" colspan=\"3\">" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + strTab + Sexo.ToString() == "F" ? "Estimada" : "Estimado " + this.m_Nombre + " " + this.m_Apellidos + ":<br>usted ha sido registrado como usuario del " + ServiceFullName + "." + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + strTab + "A continuaciÛn le notificamos los datos necesarios para hacer uso de Èste." + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + strTab + "A continuaci√≥n le notificamos los datos necesarios para hacer uso de √©ste." + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "</td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "</tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"20%\" valign=\"top\"><b>Nombre</b></td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"30%\" valign=\"top\"><b>Valor</b></td>" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"50%\" valign=\"top\"><b>ExplicaciÛn</b></td>" + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"50%\" valign=\"top\"><b>Explicaci√≥n</b></td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "</tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"20%\" valign=\"top\">DirecciÛn de corrreo:</td>" + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"20%\" valign=\"top\">Direcci√≥n de corrreo:</td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"30%\" valign=\"top\">" + this.m_Email + "</td>" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"50%\" valign=\"top\">La direcciÛn de correo se emplear· como nombre de usuario.</td>" + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"50%\" valign=\"top\">La direcci√≥n de correo se emplear√° como nombre de usuario.</td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "</tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"20%\" valign=\"top\">ContraseÒa:</td>" + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"20%\" valign=\"top\">Contrase√±a:</td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"30%\" valign=\"top\">" + Crypto.Decrypt(this.m_Passwd) + "</td>" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"50%\" valign=\"top\">ContraseÒa de acceso.</td>" + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" width=\"50%\" valign=\"top\">Contrase√±a de acceso.</td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "</tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td valign=\"middle\" colspan=\"3\"><hr size=\"1\" color=\"#47639a\" width=\"100%\"></td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "</tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "<td style=\"" + style_td + "\" valign=\"middle\" colspan=\"3\">" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + strTab + "Puede utilizar la aplicaciÛn <a href=\"" + AzuPassProfileMgrURL + "\" target=\"_blank\">Administrador de perfiles AzuPass <img border=\"0\" src=\"" + wsSettings.AzuPassProfileMgrURL + "/imagenes/logo_small.gif\"></a>" + strNewLine);
-        sbHTML.Append(strTab + strTab + strTab + strTab + strTab + "para modificar datos de su perfil, su contraseÒa y direcciÛn electrÛnica seg˙n como estime necesario y tambiÈn para ver un registro de sus propias visitas a otros servicio o aplicaciones que hagan uso de " + wsSettings.ServiceShortName + "." + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + strTab + "Puede utilizar la aplicaci√≥n <a href=\"" + AzuPassProfileMgrURL + "\" target=\"_blank\">Administrador de perfiles AzuPass <img border=\"0\" src=\"" + wsSettings.AzuPassProfileMgrURL + "/imagenes/logo_small.gif\"></a>" + strNewLine);
+        sbHTML.Append(strTab + strTab + strTab + strTab + strTab + "para modificar datos de su perfil, su contrase√±a y direcci√≥n electr√≥nica seg√∫n como estime necesario y tambi√©n para ver un registro de sus propias visitas a otros servicio o aplicaciones que hagan uso de " + wsSettings.ServiceShortName + "." + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + strTab + "</td>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "</tr>" + strNewLine);
         sbHTML.Append(strTab + strTab + strTab + "<tr>" + strNewLine);
@@ -417,13 +417,13 @@ namespace TEICOCF.WebServices
         System.Net.Mail.MailMessage mailMsg = new System.Net.Mail.MailMessage(
           wsSettings.SMTPService.User,
           this.m_Email,
-          "NotificaciÛn de registro: " + wsSettings.ServiceShortName,
+          "Notificaci√≥n de registro: " + wsSettings.ServiceShortName,
           @sbHTML.ToString());
 
         mailMsg.BodyEncoding = System.Text.Encoding.GetEncoding("iso-8859-1");
         mailMsg.Priority = System.Net.Mail.MailPriority.Normal;
         mailMsg.Headers["Reply-To"] = "no-replay";
-        //mailMsg.Subject = "NotificaciÛn de registro: " + wsSettings.ServiceShortName;
+        //mailMsg.Subject = "Notificaci√≥n de registro: " + wsSettings.ServiceShortName;
         //mailMsg.AlternateViews.Clear();
         mailMsg.AlternateViews.Add(System.Net.Mail.AlternateView.CreateAlternateViewFromString(@sbHTML.ToString(), System.Text.Encoding.GetEncoding("iso-8859-1"), System.Net.Mime.MediaTypeNames.Text.Html));
 
@@ -448,7 +448,7 @@ namespace TEICOCF.WebServices
           ProcessError processError = new ProcessError();
           processError.GuardarError(Ex, "Perfil", "sendWellcomeMessage");
           processError = null;
-          // No hacer nada m·s para cuando no se pueden establecer los par·metros de AuthenticaciÛn SMTP.
+          // No hacer nada m√°s para cuando no se pueden establecer los par√°metros de Authenticaci√≥n SMTP.
         }
         client.Send(mailMsg);
         //System.Net.Mail.SmtpMail.Send(mailMsg);
@@ -457,7 +457,7 @@ namespace TEICOCF.WebServices
       }
       catch (System.Exception Ex)
       {
-        // Registrar Error aqu;i de manera detallada a travÈs de la clase ProcessError.
+        // Registrar Error aqu;i de manera detallada a trav√©s de la clase ProcessError.
         ProcessError processError = new ProcessError();
         processError.GuardarError(Ex, "Perfil", "sendWellcomeMessage", "Administrador de perfiles AzuPass", wsSettings.AzuPassProfileMgrURL, this.ID);
         processError = null;
@@ -474,7 +474,7 @@ namespace TEICOCF.WebServices
       //System.Diagnostics.Debug.WriteLine(result);
       if (result == System.DBNull.Value)
       {
-        throw new System.Exception("No existe ning˙n perfil que corresponda con el Correo-e: \"" + e_mail + "\", por tanto no se ha enviado la contraseÒa a dicha direcciÛn.");
+        throw new System.Exception("No existe ning√∫n perfil que corresponda con el Correo-e: \"" + e_mail + "\", por tanto no se ha enviado la contrase√±a a dicha direcci√≥n.");
       }
       perfil.ID = (int)result;
       return perfil.sendWelcomeEmail();
@@ -483,12 +483,12 @@ namespace TEICOCF.WebServices
     /// <summary>
     /// Validar credenciales del usuario. Se emplea para cuando se van a realizar operaciones que lo requieran.
     /// Ejemplo: para cambiar los datos del perfil del usuario es necesario que sea identificado correctamente.
-    /// Este devolver· el ID del usuario para el cual se est·n validando las credenciales si la validaciÛn es 
-    /// exitosa, sino devolver· cero(0).
+    /// Este devolver√° el ID del usuario para el cual se est√°n validando las credenciales si la validaci√≥n es 
+    /// exitosa, sino devolver√° cero(0).
     /// </summary>
     /// <param name="Email"></param>
     /// <param name="Passwd"></param>
-    /// <returns>ID del usuario para el cual se est·n validando las credenciales si la validaciÛn es exitosa, 
+    /// <returns>ID del usuario para el cual se est√°n validando las credenciales si la validaci√≥n es exitosa, 
     /// de lo contrario devuelve cero(0).</returns>
     public int Identificar(string Email, string Passwd, bool isForLogOn)
     {
@@ -507,18 +507,18 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Validar las credenciales del usuario para inicio de sesiÛn, Èste registrar· tambiÈn el 
-    /// suceso en la tabla "tbl_RegistroUso" a nombre del usuario que inicia sesiÛn y devilver·
-    /// el ID del usuario que est· iniciando sesiÛn.
+    /// Validar las credenciales del usuario para inicio de sesi√≥n, √©ste registrar√° tambi√©n el 
+    /// suceso en la tabla "tbl_RegistroUso" a nombre del usuario que inicia sesi√≥n y devilver√°
+    /// el ID del usuario que est√° iniciando sesi√≥n.
     /// </summary>
     /// <param name="e_mail"></param>
     /// <param name="Passwd"></param>
-    /// <param name="clientAppName">Nombre de la aplicaciÛn cliente desde donde se intenta iniciar sesiÛn.</param>
-    /// <param name="clientAppURL">URL de la aplicaciÛn cliente desde donde se intenta iniciar sesiÛn.</param>
+    /// <param name="clientAppName">Nombre de la aplicaci√≥n cliente desde donde se intenta iniciar sesi√≥n.</param>
+    /// <param name="clientAppURL">URL de la aplicaci√≥n cliente desde donde se intenta iniciar sesi√≥n.</param>
     /// <returns></returns>
     public int LogOn(string e_mail, string Passwd, string clientAppName, string clientAppURL)
     {
-      // Validar la URL de la aplicaciÛn que se est· utilizando.
+      // Validar la URL de la aplicaci√≥n que se est√° utilizando.
 
 
       System.Object[] Args = { null, e_mail, Passwd, clientAppName, clientAppURL };
@@ -536,8 +536,8 @@ namespace TEICOCF.WebServices
 
     /// <summary>
     /// Devuelve un DataSet con la lista con el nombre y URL de los sitios favoritos del usuario al 
-    /// que pertenezca el perfil seg˙n el IdPerfil que se pasa como par·metro. El n˙mero de registros
-    /// est· limitado por el valor que se pase en listTop.
+    /// que pertenezca el perfil seg√∫n el IdPerfil que se pasa como par√°metro. El n√∫mero de registros
+    /// est√° limitado por el valor que se pase en listTop.
     /// </summary>
     /// <param name="IdPerfil"></param>
     /// <param name="listTop"></param>
@@ -572,11 +572,11 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Comprueba el formato de la direcciÛn electrÛnica que se pasa como valor del par·metro e_mail y verifica que 
+    /// Comprueba el formato de la direcci√≥n electr√≥nica que se pasa como valor del par√°metro e_mail y verifica que 
     /// pertenezca a uno de los dominios de correo en el Web.config o se encuentre dentro de un subdominio si corresponde.
     /// </summary>
-    /// <param name="e_mail">DirecciÛn de correo que se necesita comprobar.</param>
-    /// <returns>TRUE si la direcciÛn de correo es v·lida, en otro caso FALSE.</returns>
+    /// <param name="e_mail">Direcci√≥n de correo que se necesita comprobar.</param>
+    /// <returns>TRUE si la direcci√≥n de correo es v√°lida, en otro caso FALSE.</returns>
     public static bool isValidEmail(string e_mail)
     {
       bool validEmail = false;
@@ -595,9 +595,9 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Comprueba si existe la direcciÛn de correo que se pasa como valor del par·metro "e_mail"
+    /// Comprueba si existe la direcci√≥n de correo que se pasa como valor del par√°metro "e_mail"
     /// </summary>
-    /// <param name="e_mail">DirecciÛn de correo que se necesita comprobar.</param>
+    /// <param name="e_mail">Direcci√≥n de correo que se necesita comprobar.</param>
     /// <returns>Entero que indica la cantidad de ocurrencias encontradas.</returns>
     public static bool existEmail(string e_mail)
     {
@@ -612,8 +612,8 @@ namespace TEICOCF.WebServices
 
 
     /// <summary>
-    /// Comprueba que el valor de la fecha que se pasa en el par·metro FechaNac sea tan atr·s en el tiempo como 
-    /// aÒos se especifiquen en el Web.config para hacer uso de este servicio.
+    /// Comprueba que el valor de la fecha que se pasa en el par√°metro FechaNac sea tan atr√°s en el tiempo como 
+    /// a√±os se especifiquen en el Web.config para hacer uso de este servicio.
     /// </summary>
     /// <param name="FechaNac"></param>
     /// <returns></returns>
@@ -629,7 +629,7 @@ namespace TEICOCF.WebServices
     
     #endregion "FIN DE PROCEDIMIENTOS PARA VALIDACIONES"
 
-    #endregion "FIN DE PROCEDIMIENTOS P⁄BLICOS"
+    #endregion "FIN DE PROCEDIMIENTOS P√öBLICOS"
 
     #region "PROCEDIMIENTOS OBSOLETOS"
 

@@ -1,10 +1,10 @@
-using System;
+Ôªøusing System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Esta es una clase abstracta para definiciones e implementaciones para acceso a datos, de esta heredanr·n 
-	/// las clases especÌficas de los motores de datos para los cuales se implemente cada una.
+	/// Esta es una clase abstracta para definiciones e implementaciones para acceso a datos, de esta heredanr√°n 
+	/// las clases espec√≠ficas de los motores de datos para los cuales se implemente cada una.
 	/// </summary>
 	public abstract class DataGen
 	{
@@ -75,7 +75,7 @@ namespace TEICOCF.WebServices
 
 		#endregion "FIN DE PROCEDIMIENTOS PROTEGIDOS"
 
-		#region "PROCEDIMIENTOS P⁄BLICOS"
+		#region "PROCEDIMIENTOS P√öBLICOS"
 
 		public System.Data.DataSet getDataSet(string storedProcedure)
 		{
@@ -131,8 +131,8 @@ namespace TEICOCF.WebServices
 		}
 
 		/// <summary>
-		/// Devuelve el primer par·metro de tipo Output Û InputOutput que pertenece al comando ejecutado,
-		/// en caso pr·ctico debe ser el valor que toma Id del registro agregado.
+		/// Devuelve el primer par√°metro de tipo Output √≥ InputOutput que pertenece al comando ejecutado,
+		/// en caso pr√°ctico debe ser el valor que toma Id del registro agregado.
 		/// </summary>
 		/// <param name="storedProcedure"></param>
 		/// <returns></returns>
@@ -151,8 +151,8 @@ namespace TEICOCF.WebServices
 		}
 		
 		/// <summary>
-		/// Devuelve el primer par·metro de tipo Output Û InputOutput que pertenece al comando ejecutado,
-		/// en caso pr·ctico debe ser el valor que toma Id del registro agregado.
+		/// Devuelve el primer par√°metro de tipo Output √≥ InputOutput que pertenece al comando ejecutado,
+		/// en caso pr√°ctico debe ser el valor que toma Id del registro agregado.
 		/// </summary>
 		/// <param name="storedProcedure"></param>
 		/// <param name="Args"></param>
@@ -182,7 +182,7 @@ namespace TEICOCF.WebServices
 		}
 
 
-		#endregion "FIN DE PROCEDIMIENTOS P⁄BLICOS"
+		#endregion "FIN DE PROCEDIMIENTOS P√öBLICOS"
 
 	}
 

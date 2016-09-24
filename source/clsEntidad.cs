@@ -1,11 +1,11 @@
-using System;
+ï»¿using System;
 
 namespace TEICOCF.WebServices
 {
 
 
 	/// <summary>
-	/// Descripción breve de Perfil.
+	/// DescripciÃ³n breve de Perfil.
 	/// </summary>
 	public abstract class Entidad
 	{
@@ -39,9 +39,9 @@ namespace TEICOCF.WebServices
 			set
 			{
 				/*
-				 	Revisar si es necesario aquí traer los DataTable que corresponden 
+				 	Revisar si es necesario aquÃ­ traer los DataTable que corresponden 
 					para que la entidad sea editada o implementar esto en otro procedimiento 
-					y traer aquí solo el registro de la entidad en cuestión.
+					y traer aquÃ­ solo el registro de la entidad en cuestiÃ³n.
 				*/
 				this.m_ID = value;
 				this.m_dsEntidad = this.daCom().getDataSet("pa_" + this.tblName + "_GE", this.m_ID);
@@ -99,7 +99,7 @@ namespace TEICOCF.WebServices
 				}
 				else
 				{
-					throw new System.Exception("El valor de la llave 'dbServerType' en el fichero de configuración 'Web.config' no es la correcta.");
+					throw new System.Exception("El valor de la llave 'dbServerType' en el fichero de configuraciÃ³n 'Web.config' no es la correcta.");
 				}
 
 			}
@@ -113,7 +113,7 @@ namespace TEICOCF.WebServices
 		#region "PROCEDIMINETOS PRIVADOS"
 
 		/// <summary>
-		/// Implementar en la clase que deriva de ésta un procedimiento para actualizar 
+		/// Implementar en la clase que deriva de Ã©sta un procedimiento para actualizar 
 		/// los valores de los miembros que corresponden con los campos en la base de 
 		/// datos para que contengan los valores del DataSet dsEntidad que es donde se 
 		/// almacenan los datos del objeto "Entidad" actual.
@@ -123,10 +123,10 @@ namespace TEICOCF.WebServices
 
 		#endregion "FIN DE PROCEDIMINETOS PRIVADOS"
 
-		#region "PROCEDIMIENTOS PÚBLICOS"
+		#region "PROCEDIMIENTOS PÃšBLICOS"
 
 		/// <summary>
-		/// Devuelve el valor de ID recien agregago a la entidad en cuestión.
+		/// Devuelve el valor de ID recien agregago a la entidad en cuestiÃ³n.
 		/// </summary>
 		/// <param name="dsPerfil"></param>
 		/// <returns></returns>
@@ -187,7 +187,7 @@ namespace TEICOCF.WebServices
 			// ActualizarCampos();
 		}
 
-		// OBTENER DATOS DE LA ENTIDAD EN CUESTIÓN
+		// OBTENER DATOS DE LA ENTIDAD EN CUESTIÃ“N
 
 		/// <summary>
 		/// Obtener, en un DataSet, lista para mostrar en cuadros combinados.
@@ -221,21 +221,21 @@ namespace TEICOCF.WebServices
 		/// Traer filtrado
 		/// </summary>
 		/// <param name="filtro">Parte final del nombre del procedimineto que describe el filtro del mismo.</param>
-		/// <param name="Args">Arreglo object con los valores de los parámetro que espera el procedimiento almacenado.</param>
+		/// <param name="Args">Arreglo object con los valores de los parÃ¡metro que espera el procedimiento almacenado.</param>
 		/// <returns></returns>
 		public System.Data.DataSet getFiltered(string filtro, params System.Object[] Args)
 		{
 			return this.daCom().getDataSet("pa_" + this.tblName + "_Gx" + filtro, Args);
 		}
 
-		#endregion "FIN DE PROCEDIMIENTOS PÚBLICOS"
+		#endregion "FIN DE PROCEDIMIENTOS PÃšBLICOS"
 
 
 		/*
 		public Entidad()
 		{
 			//
-			// TODO: agregar aquí la lógica del constructor
+			// TODO: agregar aquÃ­ la lÃ³gica del constructor
 			//
 		}
 		public Entidad(string tblName)
@@ -249,7 +249,7 @@ namespace TEICOCF.WebServices
 		public string tblName;
 		private int m_ID;
 
-		//Públicas
+		//PÃºblicas
 		private DataGen m_DaCom = null;
 		public System.Data.DataSet dsDatos;
 
@@ -276,7 +276,7 @@ namespace TEICOCF.WebServices
 
 		#endregion "FIN DE PROCEDIMIENTOS PROPERTY"
 
-		#region "PROCEDIMIENTOS PÚBLICOS"
+		#region "PROCEDIMIENTOS PÃšBLICOS"
 		public System.Data.DataSet getOne()
 		{
 			return this.DaCom().getDataSet("pa_" + this.tblName + "_G", this.m_ID);
@@ -286,7 +286,7 @@ namespace TEICOCF.WebServices
 			return this.DaCom().getDataSet("pa_" + this.tblName + "_GA");
 		}
 
-		#endregion "FIN DE PROCEDIMIENTOS PÚBLICOS"
+		#endregion "FIN DE PROCEDIMIENTOS PÃšBLICOS"
 
 		*/
 	

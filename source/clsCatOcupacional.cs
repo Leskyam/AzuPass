@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 
 namespace TEICOCF.WebServices
 {
 	/// <summary>
-	/// Descripci�n breve de Perfil.
+	/// Descripción breve de Perfil.
 	/// </summary>
 	public class CatOcupacional : Entidad
 	{
