@@ -41,12 +41,3 @@ C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.Global.resources
 C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.csproj.GenerateResource.Cache
 C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.dll
 C:\Users\lesky\Source\Repos\AzuPass\source\obj\Debug\AzuPass.pdb
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\obj\Debug\AzuPass.csprojResolveAssemblyReference.cache
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\obj\Debug\TEICOCF.WebServices.AzuPass.resources
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\obj\Debug\AzuPass.Global.resources
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\obj\Debug\AzuPass.csproj.GenerateResource.Cache
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\obj\Debug\AzuPass.dll
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\obj\Debug\AzuPass.pdb
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\bin\AzuPass.dll.config
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\bin\AzuPass.dll
-C:\Users\lesky\Documents\Visual Studio 2015\Projects\AzuPass\source\bin\AzuPass.pdb
