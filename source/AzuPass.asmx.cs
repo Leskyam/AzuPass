@@ -6,22 +6,6 @@ namespace TEICOCF.WebServices
 {
 
   [System.Web.Script.Services.ScriptService()]
-	/// <summary>
-	/// AzuPass es un servicio Web XML que utiliza registros de usuarios en una base de datos personalizada 
-	/// con el fin de proporcionar a sus "aplicaciones clientes" un mecanismo centralizado para la identificación 
-	/// de los mismos, para ello expondrá los métodos necesarios a través de los cuales estos clientes podrán 
-	/// implementar funciones básicas como: identificar usuarios, obtener lista de sitios o aplicaciones con sus 
-	/// correspondientes Nombre y URL que utilicen este servicio, obtener la lista de los x sitios y/o aplicaciones 
-	/// más utilizadas por el usuario que se identifica, etc. Los clientes especializados de este servicio, como 
-	/// la aplicación Administrador de perfiles AzuPass (AzuPassProfileMgr) tendrán acceso a otros miembros que 
-	/// les permitirán realizar entre otras las siguientes operaciones: agregar nuevo perfil de usuario, modificar 
-	/// datos del perfil del usuario, etc. Gracias al desarrollo de la aplicación especializada (AzuPassProfileMgr)
-	/// los desarrolladores de aplicaciones que empleen este servicio para identificación de usuarios no tendrán 
-	/// que preocuparse por las implementaciones, en la aplicación que desarrollen, de todos los mecanismos propios 
-	/// para la manipulación de los datos de los perfiles de los usuario, sino que podrán remitir a los usuarios a 
-	/// la URL de la aplicación que lo hace (AzuPassProfileMgr), implementando solamente el método para la validación 
-	/// de las credenciales que proporciona el usuario.
-	/// </summary>
 	[WebService(Name = "AzuPass", Namespace = "http://webservices.cf.minaz.cu/", Description = "Este es un servicio Web XML que utiliza " + 
 	"registros de usuarios en una base de datos personalizada con el fin de proporcionar a sus \"aplicaciones clientes\" " +
 	"un mecanismo centralizado para la identificación de los mismos, para ello expondrá los métodos necesarios a través " + 
