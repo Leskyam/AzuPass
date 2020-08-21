@@ -25,6 +25,7 @@
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,19 +73,19 @@
       <DependentUpon>AzuPass.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="clsCatOcupacional.cs" />
-    <Compile Include="clsCrypto.cs" />
-    <Compile Include="clsDataGen.cs" />
-    <Compile Include="clsDataMSSql.cs" />
-    <Compile Include="clsDataMySql.cs" />
-    <Compile Include="clsDataPostgreSql.cs" />
-    <Compile Include="clsEntidad.cs" />
-    <Compile Include="clsIntereses.cs" />
-    <Compile Include="clsPerfil.cs" />
-    <Compile Include="clsProcessError.cs" />
-    <Compile Include="clsRegistroUso.cs" />
-    <Compile Include="clsServicedApplication.cs" />
-    <Compile Include="clsSettings.cs" />
+    <Compile Include="CatOcupacional.cs" />
+    <Compile Include="Crypto.cs" />
+    <Compile Include="DataGen.cs" />
+    <Compile Include="DataMSSql.cs" />
+    <Compile Include="DataMySql.cs" />
+    <Compile Include="DataPostgreSql.cs" />
+    <Compile Include="Entidad.cs" />
+    <Compile Include="Intereses.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="ProcessError.cs" />
+    <Compile Include="RegistroUso.cs" />
+    <Compile Include="ServicedApplication.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

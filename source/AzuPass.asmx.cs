@@ -2,7 +2,7 @@
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
-namespace TEICOCF.WebServices
+namespace LAMSoft.WebServices
 {
 
   [System.Web.Script.Services.ScriptService()]
@@ -48,14 +48,14 @@ namespace TEICOCF.WebServices
 			{
         string errorMessage = "Este miembro es de tipo \"protegido\" y aunque sea " +
           "público no puede ser ejecutado sin previa coordinación con los desarrolladores " +
-          "del servicio \"" + wsSettings.ServiceShortName + "\".";
+          "del servicio \"" + Settings.ServiceShortName + "\".";
         throw new SoapException(errorMessage, SoapException.ClientFaultCode);
 			}
 
       if (wsAuthentication.AppCliente != soapApp || Crypto.Decrypt(wsAuthentication.Password) != soapSecret)
       {
         string errorMessage = "Las credenciales proporcionadas por la aplicación cliente para la ejecución " + 
-          "de miembros privados del servicio " + wsSettings.ServiceShortName + " no son las esperadas.";
+          "de miembros privados del servicio " + Settings.ServiceShortName + " no son las esperadas.";
         throw new SoapException(errorMessage, SoapException.ClientFaultCode);
       }
 
@@ -99,7 +99,7 @@ namespace TEICOCF.WebServices
 				}
 
 				// Verificar el formato y corregir la URL si es necesario y posible.
-				clientAppURL = wsSettings.parseURL(clientAppURL, "minaz.cu");
+				clientAppURL = Settings.parseURL(clientAppURL, "minaz.cu");
 				System.Uri appUri = new System.Uri(clientAppURL);
 
 				ServicedApplication servicedApplication = new ServicedApplication();
@@ -119,8 +119,8 @@ namespace TEICOCF.WebServices
 
 				// Si se exige el chequeo de las URLs y la URL de la aplicación en cuestión no está chequeada ó
 				// si ya venció el tiempo y debe volver a ser verificada, entonces verificarla.
-				if((wsSettings.InternetAccess.CheckClientAppsURL & !servicedApplication.urlChecked) ||
-					(wsSettings.InternetAccess.CheckClientAppsURL & (servicedApplication.lastURLCheck.AddMonths(wsSettings.InternetAccess.MonthBeforeReCheck) < System.DateTime.Now)))
+				if((Settings.InternetAccess.CheckClientAppsURL & !servicedApplication.urlChecked) ||
+					(Settings.InternetAccess.CheckClientAppsURL & (servicedApplication.lastURLCheck.AddMonths(Settings.InternetAccess.MonthBeforeReCheck) < System.DateTime.Now)))
 				{
 					servicedApplication.urlChecked = servicedApplication.isURLReachable();                        
 					servicedApplication.lastURLCheck = System.DateTime.Now;
@@ -448,7 +448,7 @@ namespace TEICOCF.WebServices
 		{
 			try
 			{
-				string[] aryAdmins = wsSettings.wsAdmins;
+				string[] aryAdmins = Settings.wsAdmins;
 				System.Data.DataSet dsAdmins = new System.Data.DataSet();
 				dsAdmins.Tables.Add("WebServiceAdmins");
 				dsAdmins.Tables[0].Columns.Add("e_mail", System.Type.GetType("System.String"));
@@ -492,7 +492,7 @@ namespace TEICOCF.WebServices
 		{
 			try
 			{
-				return wsSettings.AzuPassProfileMgrURL;
+				return Settings.AzuPassProfileMgrURL;
 			}
 			catch(System.Exception Ex)
 			{
@@ -523,8 +523,8 @@ namespace TEICOCF.WebServices
 		{
 			try
 			{
-				string wsVersion = wsSettings.ServiceVersion;
-				string wsAssemblyName = wsSettings.ServiceAssemblyName;
+				string wsVersion = Settings.ServiceVersion;
+				string wsAssemblyName = Settings.ServiceAssemblyName;
 
 				string strTab = System.Web.UI.HtmlTextWriter.DefaultTabString;
 				// Las comillas dobles.
@@ -588,7 +588,7 @@ namespace TEICOCF.WebServices
 				sbHTML.Append(strTab + strTab + strTab + "<b>Desarrolladores:</b><br>" + strNewLine);
 				sbHTML.Append(strTab + strTab + strTab + "<a href=\"mailto:leskyam@cf.minaz.cu?subject=Acerca de AzuPass&body=Mensaje generado desde el cuadro 'Acerca de' del servicio Web XMl AzuPass\">Lesky Alfonso M.</a><br>" + strNewLine);
 				sbHTML.Append(strTab + strTab + strTab + "<b>Administradores:</b><br>" + strNewLine);
-				string[] aryServiceAdmins = wsSettings.wsAdmins;
+				string[] aryServiceAdmins = Settings.wsAdmins;
 				for(int i =0; i<=(aryServiceAdmins.Length-1); i++)
 				{
 					// <a href="mailto:user@dominio.cu?subject=Asunto&body=Cuerpo del mensaje">mailto sintaxis</a>
@@ -598,7 +598,7 @@ namespace TEICOCF.WebServices
 				sbHTML.Append(strTab + "</tr>" + strNewLine);
 				sbHTML.Append(strTab + "<tr>" + strNewLine);
 				sbHTML.Append(strTab + strTab + "<td colspan=\"2\" style=\"text-align: center; font-weight: bold; font-size: 6pt; color: black; font-family: Verdana; background-color: #99ccff; text-decoration: none\">" + strNewLine);
-				sbHTML.Append(strTab + strTab + strTab + wsSettings.getCopyright() + strNewLine);
+				sbHTML.Append(strTab + strTab + strTab + Settings.getCopyright() + strNewLine);
 				sbHTML.Append(strTab + strTab + "</td>" + strNewLine);
 				sbHTML.Append(strTab + "</tr>" + strNewLine);
 				sbHTML.Append("</table>");
@@ -642,7 +642,7 @@ namespace TEICOCF.WebServices
 		{
 			try
 			{
-        return TEICOCF.WebServices.wsSettings.ApplicationBaseURL + "imagenes/logo_small.gif";
+        return LAMSoft.WebServices.Settings.ApplicationBaseURL + "imagenes/logo_small.gif";
 			}
 			catch (System.Exception Ex)
 			{
@@ -673,7 +673,7 @@ namespace TEICOCF.WebServices
 		{
 			try
 			{
-				return wsSettings.ServiceShortName;
+				return Settings.ServiceShortName;
 			}
 			catch (System.Exception Ex)
 			{
@@ -704,7 +704,7 @@ namespace TEICOCF.WebServices
 		{
 			try
 			{
-				return wsSettings.ServiceFullName;
+				return Settings.ServiceFullName;
 			}
 			catch (System.Exception Ex)
 			{
@@ -789,7 +789,7 @@ namespace TEICOCF.WebServices
 
 				// Obtener un valor encriptado para enviar por correo como Passwd inicial para el usuario.
 				string encrypted = Crypto.Encrypt(e_mail + System.DateTime.Now.Ticks.ToString());
-				int largoMinPasswd = wsSettings.PasswdRequeriments.pwdMinChars;
+				int largoMinPasswd = Settings.PasswdRequeriments.pwdMinChars;
 				// Obtener la cadena encriptada que se le enviará al usuario.
         string Passwd = encrypted.Substring((encrypted.Length - largoMinPasswd) - 3, largoMinPasswd).ToLower();
 				// El valor Passwd que se pasa para almacenarse es otra vez encriptado.
@@ -805,7 +805,7 @@ namespace TEICOCF.WebServices
 					perfil.Eliminar();
 					perfil = null;
 
-					string[] aryServiceAdmins = wsSettings.wsAdmins;
+					string[] aryServiceAdmins = Settings.wsAdmins;
 					string ServiceAdmins = string.Empty;
 				
 					for(int i =0; i<=(aryServiceAdmins.Length-1); i++)
@@ -1061,14 +1061,14 @@ namespace TEICOCF.WebServices
 		[WebMethod(MessageName = "getPasswdRequeriments", Description = "Obtener la estructura que almacena los " + 
 			 "valores que representan los requerimientos de la contraseña.")]
         [SoapDocumentMethod(Action = "http://webservices.cf.minaz.cu/getPasswdRequeriments")]
-        public wsSettings.passwordRequeriments getPasswdRequeriments()
+        public Settings.passwordRequeriments getPasswdRequeriments()
 		{
 			// Chequear los encabezados SOAP
 			//this.checkSoapHeader();
 
 			try
 			{
-				return wsSettings.PasswdRequeriments;
+				return Settings.PasswdRequeriments;
 			}
 			catch(System.Exception Ex)
 			{
@@ -1109,7 +1109,7 @@ namespace TEICOCF.WebServices
 			try
 			{
 
-                wsSettings.passwordRequeriments passwdReq = wsSettings.PasswdRequeriments;
+                Settings.passwordRequeriments passwdReq = Settings.PasswdRequeriments;
 				string returnMessage = "Los valores de configuración de este servicio indican que su contraseña debe terner " + 
 					"como mínimo " + passwdReq.pwdMinChars + " caracteres y como máximo " + passwdReq.pwdMaxChars + ".";
 				if(passwdReq.pwdMustDiferUserName)
@@ -1212,7 +1212,7 @@ namespace TEICOCF.WebServices
 			try
 			{
 
-				string[] aryEmailTopDomains = wsSettings.EmailTopDomains;
+				string[] aryEmailTopDomains = Settings.EmailTopDomains;
 				string EmailTopDomains = string.Empty;
 				
 				for(int i =0; i<=(aryEmailTopDomains.Length-1); i++)
@@ -1224,7 +1224,7 @@ namespace TEICOCF.WebServices
 
 				string returnMessage = "Si el cambio de su dirección electrónica es efectivo, se cambiará también su actual contraseña " + 
 					"por un valor autogenerado por este servicio y ésta le llegará por correo a la nueva dirección especificada, como sucedió la " + 
-					"primera vez que se registro como usuario del servicio \"" + wsSettings.ServiceShortName + "\". Tenga en cuenta que, según la " + 
+					"primera vez que se registro como usuario del servicio \"" + Settings.ServiceShortName + "\". Tenga en cuenta que, según la " + 
 					"configuración actual de este servicio, solo se admiten direcciones de correo cuyo formato indique que pertenezcen a los siguiente(s) " + 
 					"dominio(s): " + EmailTopDomains;
 
@@ -1298,7 +1298,7 @@ namespace TEICOCF.WebServices
 				// Crear una nueva contraseña para el usuario porque por razones de seguridad le repetimos 
 				// el proceso de envío de la contraseña por correo como cuando se registró por primera vez.
 				string encrypted = Crypto.Encrypt(new_e_mail + System.DateTime.Now.Ticks.ToString());
-				int lagroMinPasswd = wsSettings.PasswdRequeriments.pwdMinChars;
+				int lagroMinPasswd = Settings.PasswdRequeriments.pwdMinChars;
 				// Obtener la cadena encriptada que se le enviará al usuario.
 				string new_Passwd = encrypted.Substring((encrypted.Length-lagroMinPasswd)-3, lagroMinPasswd).ToLower();
 				perfil.dsEntidad.Tables[0].Rows[0]["Passwd"] = Crypto.Encrypt(new_Passwd);
@@ -1320,7 +1320,7 @@ namespace TEICOCF.WebServices
 				}
 				else
 				{
-					string[] aryServiceAdmins = wsSettings.wsAdmins;
+					string[] aryServiceAdmins = Settings.wsAdmins;
 					string ServiceAdmins = string.Empty;
 				
 					for(int i =0; i<=(aryServiceAdmins.Length-1); i++)
