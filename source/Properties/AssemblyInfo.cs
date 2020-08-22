@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AzuPass")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TEICO - Cienfuegos")]
+[assembly: AssemblyCompany("LAMSoft - Cienfuegos")]
 [assembly: AssemblyProduct("AzuPass")]
-[assembly: AssemblyCopyright("Copyright © TEICO - Cienfuegos 2009")]
+[assembly: AssemblyCopyright("Copyright © LAMSoft - Cienfuegos 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
