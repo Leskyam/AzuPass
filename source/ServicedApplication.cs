@@ -37,7 +37,7 @@ namespace LAMSoft.WebServices
 
 		#region "ESTRUCTURAS"
 
-		public enum enuApplicationState
+		public enum ApplicationStage
 		{
 			Debug = 0,
             Release = 1
